@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_071035) do
+ActiveRecord::Schema.define(version: 2020_12_01_102808) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "answer", null: false
@@ -39,6 +39,27 @@ ActiveRecord::Schema.define(version: 2020_12_01_071035) do
     t.index ["problem_id"], name: "index_questions_on_problem_id"
   end
 
+  create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "sum", null: false
+    t.integer "division_id", null: false
+    t.bigint "problem_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_id"], name: "index_scores_on_problem_id"
+  end
+
+  create_table "scores_answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "answer_id", null: false
+    t.bigint "score_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_scores_answers_on_answer_id"
+    t.index ["score_id"], name: "index_scores_answers_on_score_id"
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "problems"
+  add_foreign_key "scores", "problems"
+  add_foreign_key "scores_answers", "answers"
+  add_foreign_key "scores_answers", "scores"
 end
