@@ -1,0 +1,22 @@
+.question-radio{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.question-radio>input[type='radio']{
+  display:none;
+}
+.question-radio>label{
+  position: relative;
+  padding: 10px 0px 20px 0px;
+  color: #bbb;
+  cursor: pointer;
+  font-size: 30px;
+}
+.question-radio>label:hover,
+.question-radio>label:hover ~ label,
+.question-radio>input[type='radio']:checked ~ label{
+  color: #faee2e;
+}
+
