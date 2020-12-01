@@ -1,0 +1,14 @@
+<li class='list'>
+  <div class='puestion'>
+    <%# 項番 %>
+    <%= question.number %>.
+    <%# 質問文 %>
+    <%= question.text %>
+    <br>
+    <%# ラジオボタンの繰り返し %>
+    <% question.valuation.times do |num| %>
+      <%# ラジオボタン %>
+      <%= radio_button('answer',question.number, num+1) %>
+    <% end %>
+  </div>
+</li>

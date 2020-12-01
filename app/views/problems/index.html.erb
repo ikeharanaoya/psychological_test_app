@@ -5,6 +5,16 @@
 <h2>
   <%= @problem.text %>
 </h2>
-
+<br>
+<div class='main'>
+  <%= form_with local: true do |f| %>
+    <div class='question-contents'>
+      <ul class='question-lists'>
+        <%# 部分テンプレートで、質問一覧を表示する %>
+        <%= render partial: "question", collection: @problem.questions%>
+      </ul>
+    </div>
+  <% end %>
+</div>
 
 
