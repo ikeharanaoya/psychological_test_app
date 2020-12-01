@@ -14,14 +14,14 @@ ActiveRecord::Schema.define(version: 2020_11_30_065820) do
 
   create_table "problems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.string "text", null: false
+    t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "number", null: false
-    t.string "text", null: false
+    t.text "text", null: false
     t.integer "division_id", null: false
     t.integer "valuation", null: false
     t.boolean "inversion", default: false, null: false

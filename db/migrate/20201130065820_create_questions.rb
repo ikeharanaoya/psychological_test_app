@@ -5,7 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[6.0]
       # 番号
       t.integer :number,        null: false
       # 本文
-      t.string :text,           null: false
+      t.text :text,           null: false
       # 区分
       t.integer :division_id,   null: false
       # 評価

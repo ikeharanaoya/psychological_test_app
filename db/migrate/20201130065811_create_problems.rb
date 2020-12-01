@@ -5,7 +5,7 @@ class CreateProblems < ActiveRecord::Migration[6.0]
       # タイトル
       t.string :title, null: false
       # 本文
-      t.string :text, null: false
+      t.text :text, null: false
       
       t.timestamps
     end
