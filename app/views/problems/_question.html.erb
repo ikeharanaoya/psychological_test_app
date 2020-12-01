@@ -9,7 +9,7 @@
     <div class='question-radio'>
       <% question.valuation.times do |num| %>
         <%# ラジオボタン %>
-        <%= radio_button('answer',question.number, 5-num) %>
+        <%= radio_button(:answer ,question.number, 5-num) %>
         <label for=<%= "answer_#{question.number}_#{5-num}" %> >
           ★
         </label>
