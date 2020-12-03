@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_102808) do
   end
 
   create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "count", default: 1, null: false
     t.integer "sum", null: false
     t.integer "division_id", null: false
     t.bigint "problem_id", null: false
