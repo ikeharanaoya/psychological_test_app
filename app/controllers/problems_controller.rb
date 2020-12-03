@@ -69,7 +69,7 @@ class ProblemsController < ApplicationController
     end
     
     # 評価&回答を保存
-    @scores.save
+    # @scores.save
   end
 
   private

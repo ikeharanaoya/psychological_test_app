@@ -1,0 +1,16 @@
+<canvas id="myChart"></canvas>
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ["Japanese", "Mathematics", "English", "Social studies", "Science"],
+    datasets: [{
+      label: 'A_kun',
+      backgroundColor: "rgba(0,0,80,0.4)",
+      borderColor: "rgba(0,0,80,1)",
+      data: [100, 100, 100, 100, 100, 100]
+    }]
+  }
+});
+</script>

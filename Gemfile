@@ -64,3 +64,5 @@ end
 group :production do
   gem 'rails_12factor'
 end
+
+gem 'chart-js-rails', '~> 0.1.4'
