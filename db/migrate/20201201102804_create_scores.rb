@@ -5,7 +5,7 @@ class CreateScores < ActiveRecord::Migration[6.0]
       # 回数
       t.integer :count, null: false, default: 1
       # 合計
-      t.integer :sum, null: false
+      t.integer :sum, null: false, default: 0
       # 区分
       t.integer :division_id, null: false
       # problems テーブル

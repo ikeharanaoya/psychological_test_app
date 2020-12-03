@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_102808) do
 
   create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "count", default: 1, null: false
-    t.integer "sum", null: false
+    t.integer "sum", default: 0, null: false
     t.integer "division_id", null: false
     t.bigint "problem_id", null: false
     t.datetime "created_at", precision: 6, null: false
