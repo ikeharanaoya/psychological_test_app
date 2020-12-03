@@ -1,16 +1,65 @@
+<div id="scores" data-scores="<%= @scores.to_json %>"></div>
 <canvas id="myChart"></canvas>
 <script>
+// グローバル変数にモデルデータを格納する
+var modeldata = modeljson_parse('<%=@scores_js%>');
+/** 
+ * モデルをJSON.parseする
+ */
+function modeljson_parse(scores) {
+    scores = JSON.stringify(scores);
+    scores = scores.substr(1, (scores.length - 2));
+    scores = unEscapeHtml(scores);
+    scores = JSON.parse(scores);
+    return scores;
+}
+// アンエスケープ処理
+function unEscapeHtml(str) {
+    str = str.replace(/(&gt;)/g, '>');
+    str = str.replace(/(&lt;)/g, '<');
+    str = str.replace(/(&#092;)/g, '\\');
+    str = str.replace(/(&quot;)/g, '"');
+    str = str.replace(/(&#39;)/g, "'");
+    str = str.replace(/(&amp;)/g, '&');
+    return str
+}
+
+// 合計の設定
+let sum_data = []
+modeldata.forEach((elem, index) => {
+    sum_data.push(elem["sum"]);
+});
+
+// 区分
+let labels = ["多様な視点への寛容さ","あいまいで複雑な問題への決断力","感情コントロール","他者への共感や思いやり","自己分析力または洞察力","他者へのアドバイス力"]
+
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
   type: 'radar',
   data: {
-    labels: ["Japanese", "Mathematics", "English", "Social studies", "Science"],
+    labels: labels,
     datasets: [{
       label: 'A_kun',
       backgroundColor: "rgba(0,0,80,0.4)",
       borderColor: "rgba(0,0,80,1)",
-      data: [100, 100, 100, 100, 100, 100]
+      data:  sum_data //合計の配列設定
     }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: '賢者スケール'
+    },
+    scale:{
+      ticks:{
+        suggestedMin: 4,
+        suggestedMax: 20,
+        stepsize: 4,
+        callback: function(value, index, values){
+          return value + '点'
+        }
+      }
+    }
   }
 });
 </script>
