@@ -5,8 +5,7 @@ class Answer < ApplicationRecord
   has_many :scores_answers
   # scores テーブル
   has_many :scores, through: :scores_answers
-  
+
   # 必須項目
   validates :answer, presence: true
-
 end

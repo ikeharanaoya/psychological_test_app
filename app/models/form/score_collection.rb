@@ -9,7 +9,7 @@ class Form::ScoreCollection < Form::Base
 
   def initialize(attributes = {})
     super attributes
-    self.scores = @@FORM_COUNT.times.map { Score.new() } unless self.scores.present?
+    self.scores = @@FORM_COUNT.times.map { Score.new } unless scores.present?
   end
 
   def scores_attributes=(attributes)
@@ -23,18 +23,16 @@ class Form::ScoreCollection < Form::Base
 
   def save
     Score.transaction do
-      self.scores.map do |score|
-        if score.valid?
-          score.save
-        end
+      scores.map do |score|
+        score.save if score.valid?
       end
     end
-      return true
-    rescue => e
-      return false
+    true
+  rescue StandardError => e
+    false
   end
 
   def target_scores
-    self.scores.select 
+    scores.select
   end
 end

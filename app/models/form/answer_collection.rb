@@ -9,7 +9,7 @@ class Form::AnswerCollection < Form::Base
 
   def initialize(attributes = {})
     super attributes
-    self.answers = @@FORM_COUNT.times.map { Answer.new() } unless self.answers.present?
+    self.answers = @@FORM_COUNT.times.map { Answer.new } unless answers.present?
   end
 
   def answers_attributes=(attributes)
@@ -23,18 +23,16 @@ class Form::AnswerCollection < Form::Base
 
   def save
     Answer.transaction do
-      self.answers.map do |answer|
-        if answer.valid?
-          answer.save
-        end
+      answers.map do |answer|
+        answer.save if answer.valid?
       end
     end
-      return true
-    rescue => e
-      return false
+    true
+  rescue StandardError => e
+    false
   end
 
   def target_answers
-    self.answers.select 
+    answers.select
   end
 end

@@ -5,4 +5,6 @@ class Score < ApplicationRecord
   has_many :scores_answers
   # answers テーブル
   has_many :answers, through: :scores_answers
+  # division テーブル
+  belongs_to :division
 end
