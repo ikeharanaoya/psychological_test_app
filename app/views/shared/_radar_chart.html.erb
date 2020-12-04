@@ -26,12 +26,14 @@ function unEscapeHtml(str) {
 
 // 合計の設定
 let sum_data = []
+// 区分
+let labels = []
+
 modeldata.forEach((elem, index) => {
-    sum_data.push(elem["sum"]);
+    sum_data.push(elem.sum);
+    labels.push(elem.division.text);
 });
 
-// 区分
-let labels = ["多様な視点への寛容さ","あいまいで複雑な問題への決断力","感情コントロール","他者への共感や思いやり","自己分析力または洞察力","他者へのアドバイス力"]
 
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
@@ -39,10 +41,15 @@ var myChart = new Chart(ctx, {
   data: {
     labels: labels,
     datasets: [{
-      label: 'A_kun',
-      backgroundColor: "rgba(0,0,80,0.4)",
-      borderColor: "rgba(0,0,80,1)",
+      label: '診断結果',
+      backgroundColor: "rgba(0,0,200,0.4)",
+      borderColor: "rgba(0,0,200,1)",
       data:  sum_data //合計の配列設定
+    },{
+      label: '評価基準',
+      backgroundColor: "rgba(0,0,0,0.0)",
+      borderColor: "rgba(255,0,0,1)",
+      data:  [15,15,15,15,15,15] //合計の配列設定
     }]
   },
   options: {

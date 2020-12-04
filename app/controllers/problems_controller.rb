@@ -67,7 +67,9 @@ class ProblemsController < ApplicationController
       score.answers.build(answer.attributes)
     end
     # binding.pry
-    @scores_js = @scores.scores.to_json(only: [:sum, :division_id])
+    # グラフ用に情報を整理（合計、区分、本文）
+    @scores_js = @scores.scores.to_json(only: [:sum],
+                         include: {division: { only: [:division_id, :text]}})
 
     # 評価&回答を保存
     # @scores.save
