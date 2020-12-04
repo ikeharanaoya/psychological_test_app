@@ -4,7 +4,7 @@ class ProblemsController < ApplicationController
     # 問題情報取得、紐づく質問も取得
     @problem = Problem.includes(:questions).find(1)
     # 質問項目を取得する
-    @questions =  @problem.questions
+    @questions = @problem.questions
     # 回答コレクションの数を質問と同じ数に設定
     Form::AnswerCollection.set_count(@questions.length)
     # 回答情報を生成
@@ -16,15 +16,14 @@ class ProblemsController < ApplicationController
     # 問題情報取得、紐づく質問も取得
     @problem = Problem.includes(:questions).find(params[:id])
     # 質問項目を取得する
-    @questions =  @problem.questions
+    @questions = @problem.questions
     # 回答コレクションの数を質問と同じ数に設定
     Form::AnswerCollection.set_count(@questions.length)
     # 回答を取得
     @answers = Form::AnswerCollection.new(answer_collection_params)
 
-    unless @answers.valid?
-      render :index and return
-    end
+    # バリデーション確認 エラーの場合は再表示
+    render :index and return unless @answers.valid?
 
     # 質問の区分を取得
     @divisions = @questions.group(:division_id)
@@ -37,7 +36,7 @@ class ProblemsController < ApplicationController
     count = score_max_count
     # 繰り返しカウント
     num = 0
-    
+
     # 区分事の情報をコレクションに設定
     @scores.scores.each do |score|
       # 回数を設定
@@ -61,14 +60,14 @@ class ProblemsController < ApplicationController
       # 回答→質問から区分を取得
       division_id = answer.question.division_id
       # 区分に紐づく評価を取得
-      score = @scores.scores.find{|a| a[:division_id] == division_id}
+      score = @scores.scores.find { |a| a[:division_id] == division_id }
       # 評価の合計に点数を加算
       score.sum += answer.answer
       # 評価と回答を紐づける
       score.answers.build(answer.attributes)
     end
     # binding.pry
-    @scores_js = @scores.scores.to_json(only: [:sum,:division_id])
+    @scores_js = @scores.scores.to_json(only: [:sum, :division_id])
 
     # 評価&回答を保存
     # @scores.save
@@ -79,7 +78,7 @@ class ProblemsController < ApplicationController
   # 回答結果を取得
   def answer_collection_params
     params.require(:form_answer_collection)
-    .permit(answers_attributes: [:answer,:question_id])
+          .permit(answers_attributes: [:answer, :question_id])
   end
 
   # 評価の回数(最大値)取得
@@ -94,6 +93,6 @@ class ProblemsController < ApplicationController
       count = max + 1
     end
 
-    return count
+    count
   end
 end
