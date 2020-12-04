@@ -8,6 +8,12 @@ problem = Problem.create(title:'賢者スケール', text:'1.多様な視点へ�
   いつも穏やかな態度を保ちつつ他者へのアドバイスがうまい人ってことで、確かに一般的な「賢者」のイメージにも当てはまる感じがしますね。
   
   もちろん常に完璧な賢者なんてなかなかいないとは思いますが、今回のテストで定期的に自分の「賢者レベル」を判断し、自己改善のよすがにしていただくのは非常によいことかと思います。具体的には、以下の24問について5点満点で採点していただければ幸いです（「当てはまる！」と思うものほど高得点）。')
+Division.create(division_id:1,text:'多様な視点への寛容さ', problem_id: problem.id)
+Division.create(division_id:2,text:'あいまいで複雑な問題への決断力', problem_id: problem.id)
+Division.create(division_id:3,text:'感情コントロール', problem_id: problem.id)
+Division.create(division_id:4,text:'他者への共感や思いやり', problem_id: problem.id)
+Division.create(division_id:5,text:'自己分析力または洞察力', problem_id: problem.id)
+Division.create(division_id:6,text:'他者へのアドバイス力',  problem_id: problem.id)
 Question.create(number:1,text:'他人の気持ちを察知するのが得意だ。',division_id:6,valuation:5, problem_id: problem.id)
 Question.create(number:2,text:'決断するのが苦手だ。',division_id:2,valuation:5,inversion:true, problem_id: problem.id)
 Question.create(number:3,text:'友人関係を維持するのが苦手だ。',division_id:4,valuation:5,inversion:true, problem_id: problem.id)
@@ -32,9 +38,3 @@ Question.create(number:21,text:'多様な視点に触れるのは楽しい。',d
 Question.create(number:22,text:'自分の行動を分析することは少ない。',division_id:5,valuation:5,inversion:true, problem_id: problem.id)
 Question.create(number:23,text:'人が相談に来ても、何を話せばいいのかわからないことが多い。',division_id:6,valuation:5,inversion:true, problem_id: problem.id)
 Question.create(number:24,text:'自分のネガティブな感情を遮断できないことが多い。',division_id:3,valuation:5,inversion:true, problem_id: problem.id)
-Division.create(division_id:1,text:'多様な視点への寛容さ', problem_id: problem.id)
-Division.create(division_id:2,text:'あいまいで複雑な問題への決断力', problem_id: problem.id)
-Division.create(division_id:3,text:'感情コントロール', problem_id: problem.id)
-Division.create(division_id:4,text:'他者への共感や思いやり', problem_id: problem.id)
-Division.create(division_id:5,text:'自己分析力または洞察力', problem_id: problem.id)
-Division.create(division_id:6,text:'他者へのアドバイス力',  problem_id: problem.id)
