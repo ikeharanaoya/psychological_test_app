@@ -3,4 +3,7 @@ class Question < ApplicationRecord
   belongs_to :problem
   # answers テーブル
   has_many :answers, dependent: :destroy
+
+  # division テーブル
+  belongs_to :division, dependent: :destroy
 end

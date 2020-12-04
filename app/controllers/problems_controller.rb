@@ -2,7 +2,7 @@ class ProblemsController < ApplicationController
   # 心理テスト画面
   def index
     # 問題情報取得、紐づく質問も取得
-    @problem = Problem.includes(:questions).find(1)
+    @problem = Problem.includes(questions: :division).find(1)
     # 質問項目を取得する
     @questions = @problem.questions
     # 回答コレクションの数を質問と同じ数に設定
@@ -14,7 +14,7 @@ class ProblemsController < ApplicationController
   # 回答処理
   def create
     # 問題情報取得、紐づく質問も取得
-    @problem = Problem.includes(:questions).find(params[:id])
+    @problem = Problem.includes(questions: :division).find(params[:id])
     # 質問項目を取得する
     @questions = @problem.questions
     # 回答コレクションの数を質問と同じ数に設定
