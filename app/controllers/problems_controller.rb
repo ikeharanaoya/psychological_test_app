@@ -1,6 +1,8 @@
 class ProblemsController < ApplicationController
   # トップ画面
   def index
+    # 問題情報取得
+    @problems = Problem.includes(questions: :division).all
   end
 
   # 心理テスト画面
