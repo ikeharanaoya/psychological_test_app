@@ -1,6 +1,8 @@
 class Score < ApplicationRecord
   # problem テーブル
   belongs_to :problem
+  # user テーブル
+  belongs_to :user
   # scores_answers 中間テーブル
   has_many :scores_answers
   # answers テーブル
