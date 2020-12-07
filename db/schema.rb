@@ -53,9 +53,11 @@ ActiveRecord::Schema.define(version: 2020_12_04_022522) do
     t.integer "sum", default: 0, null: false
     t.integer "division_id", null: false
     t.bigint "problem_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["problem_id"], name: "index_scores_on_problem_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "scores_answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,10 +69,24 @@ ActiveRecord::Schema.define(version: 2020_12_04_022522) do
     t.index ["score_id"], name: "index_scores_answers_on_score_id"
   end
 
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "nickname", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "divisions", "problems"
   add_foreign_key "questions", "problems"
   add_foreign_key "scores", "problems"
+  add_foreign_key "scores", "users"
   add_foreign_key "scores_answers", "answers"
   add_foreign_key "scores_answers", "scores"
 end
