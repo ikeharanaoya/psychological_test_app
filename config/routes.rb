@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   # ルートパスの設定
   root to: "problems#index"
   # problemsのパス
-  resources :problems, only: [:show,:create]
+  resources :problems, only: [:show,:create] do
+    # usersのパス
+    resources :users, only: :index
+  end
 end
