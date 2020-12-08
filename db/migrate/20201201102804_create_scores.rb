@@ -10,7 +10,9 @@ class CreateScores < ActiveRecord::Migration[6.0]
       t.integer :division_id, null: false
       # problems テーブル
       t.references :problem,    null: false, foreign_key: true
-
+      # users テーブル
+      t.references :user, foreign_key: true
+      
       t.timestamps
     end
   end

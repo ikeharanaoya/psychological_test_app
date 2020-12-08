@@ -67,3 +67,4 @@ end
 
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'composite_primary_keys'
+gem 'devise'
