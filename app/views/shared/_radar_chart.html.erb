@@ -1,8 +1,8 @@
-<div id="scores" data-scores="<%= @scores.to_json %>"></div>
-<canvas id="myChart"></canvas>
+<div>
+<canvas id=<%=model.object_id%>></canvas>
 <script>
 // グローバル変数にモデルデータを格納する
-var modeldata = modeljson_parse('<%=@scores_js%>');
+var modeldata = modeljson_parse('<%=model%>');
 /** 
  * モデルをJSON.parseする
  */
@@ -25,9 +25,9 @@ function unEscapeHtml(str) {
 }
 
 // 合計の設定
-let sum_data = []
+var sum_data = []
 // 区分
-let labels = []
+var labels = []
 
 modeldata.forEach((elem, index) => {
     sum_data.push(elem.sum);
@@ -35,7 +35,8 @@ modeldata.forEach((elem, index) => {
 });
 
 
-var ctx = document.getElementById("myChart");
+var id = document.getElementById("id")
+var ctx = document.getElementById('<%= model.object_id %>');
 var myChart = new Chart(ctx, {
   type: 'radar',
   data: {
@@ -70,3 +71,4 @@ var myChart = new Chart(ctx, {
   }
 });
 </script>
+</div>
