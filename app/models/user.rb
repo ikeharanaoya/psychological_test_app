@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # ニックネーム
-  validates :nickname ,presence: true
+  validates :nickname, presence: true
   # scores テーブル
   has_many :scores, dependent: :destroy
 end
