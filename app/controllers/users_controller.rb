@@ -14,6 +14,8 @@ class UsersController < ApplicationController
       @scores_js += [@scores.where(count: sum[0]).to_json(only: [:sum],
         include: { division: { only: [:division_id, :text] } })]
     end
+    # 合計値リストの変換
+    @sum_list_js = @sum_list.to_json
     # binding.pry
   end
 end

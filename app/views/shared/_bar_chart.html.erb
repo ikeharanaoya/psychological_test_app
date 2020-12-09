@@ -1,8 +1,8 @@
 <div>
-<canvas id='model'>></canvas>
+<canvas id=<%=model.object_id%>></canvas>
 <script>
 // グローバル変数にモデルデータを格納する
-// var modeldata = modeljson_parse('model');
+var modeldata = modeljson_parse('<%=model%>');
 /** 
  * モデルをJSON.parseする
  */
@@ -25,23 +25,30 @@ function unEscapeHtml(str) {
 }
 
 // 合計の設定
-var sum_data = []
+var sum_data = Array(10)
+// 中身の初期化
+sum_data.fill("")
 // 区分
-var labels = []
+var labels = Array(10)
+// 中身の初期化
+labels.fill("")
 
-// modeldata.forEach((elem, index) => {
-//     sum_data.push(elem.sum);
-//     labels.push(elem.division.text);
-// });
+var count = 0
 
-var ctx = document.getElementById('model');
+for (let key in modeldata) {
+  sum_data[count] = modeldata[key];
+  labels[count] = `${key}回目`;
+  count++;
+}
+
+var ctx = document.getElementById('<%= model.object_id %>');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["1回目","2回目","","","","","","",""],
+    labels: labels,
     datasets: [{
       label: '賢者スケール',
-      data: [50,70,,,,,,,],
+      data: sum_data,
       backgroundColor: "rgba(0,0,200,0.4)",
       borderColor: "rgba(0,0,200,1)",
       borderWidth: 1
