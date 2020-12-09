@@ -82,7 +82,7 @@ class ProblemsController < ApplicationController
                                         include: { division: { only: [:division_id, :text] } })
 
     # ログイン確認
-    if user_signed_in? 
+    if user_signed_in?
       # ログインしている場合、評価&回答を保存
       @scores.save
     end
@@ -116,7 +116,7 @@ class ProblemsController < ApplicationController
     # 初期化
     user_id = nil
     # ログイン確認
-    if user_signed_in? 
+    if user_signed_in?
       # ログインしているユーザーのID設定
       user_id = current_user.id
     end
