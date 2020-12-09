@@ -40,6 +40,8 @@ class ProblemsController < ApplicationController
 
     # 評価の回数(最大値)取得
     count = score_max_count
+    # ユーザIDの取得
+    user_id = get_user_id
     # 繰り返しカウント
     num = 0
 
@@ -51,6 +53,8 @@ class ProblemsController < ApplicationController
       score[:division_id] = @divisions[num].division_id
       # 問題IDを設定
       score[:problem_id] = @divisions[num].problem_id
+      # ユーザーID設定
+      score[:user_id] = user_id
       # インクリメント
       num += 1
     end
@@ -77,8 +81,11 @@ class ProblemsController < ApplicationController
     @scores_js = @scores.scores.to_json(only: [:sum],
                                         include: { division: { only: [:division_id, :text] } })
 
-    # 評価&回答を保存
-    # @scores.save
+    # ログイン確認
+    if user_signed_in? 
+      # ログインしている場合、評価&回答を保存
+      @scores.save
+    end
   end
 
   private
@@ -102,5 +109,18 @@ class ProblemsController < ApplicationController
     end
 
     count
+  end
+
+  # ユーザIDの取得
+  def get_user_id
+    # 初期化
+    user_id = nil
+    # ログイン確認
+    if user_signed_in? 
+      # ログインしているユーザーのID設定
+      user_id = current_user.id
+    end
+
+    user_id
   end
 end

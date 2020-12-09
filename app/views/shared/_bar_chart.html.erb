@@ -25,46 +25,39 @@ function unEscapeHtml(str) {
 }
 
 // 合計の設定
-var sum_data = []
+var sum_data = Array(10).fill("")
 // 区分
-var labels = []
+var labels = Array(10).fill("")
+// カウント用
+var count = 0
 
-modeldata.forEach((elem, index) => {
-    sum_data.push(elem.sum);
-    labels.push(elem.division.text);
-});
+for (let key in modeldata) {
+  sum_data[count] = modeldata[key];
+  labels[count] = `${key}回目`;
+  count++;
+}
 
 var ctx = document.getElementById('<%= model.object_id %>');
 var myChart = new Chart(ctx, {
-  type: 'radar',
+  type: 'bar',
   data: {
     labels: labels,
     datasets: [{
-      label: '診断結果',
+      label: '賢者スケール',
+      data: sum_data,
       backgroundColor: "rgba(0,0,200,0.4)",
       borderColor: "rgba(0,0,200,1)",
-      data:  sum_data //合計の配列設定
-    },{
-      label: '評価基準',
-      backgroundColor: "rgba(0,0,0,0.0)",
-      borderColor: "rgba(255,0,0,1)",
-      data:  [15,15,15,15,15,15] //合計の配列設定
+      borderWidth: 1
     }]
   },
   options: {
-    title: {
-      display: true,
-      text: '賢者スケール'
-    },
-    scale:{
-      ticks:{
-        suggestedMin: 4,
-        suggestedMax: 20,
-        stepsize: 4,
-        callback: function(value, index, values){
-          return value + '点'
-        }
-      }
+    scales: {
+        yAxes: [{
+            ticks: {
+                max: 120,
+                beginAtZero:true
+            },
+        }]
     }
   }
 });
