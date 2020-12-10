@@ -1,0 +1,28 @@
+.top-page-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #76D6FF;
+  height: 50px;
+  margin: 10px 5vw;
+  border-radius: 4px;
+}
+
+.header-title{
+  color: white;
+  font-size: 24px;
+}
+
+.logout,.login,.sign-up{
+  border: 1px solid white;
+  color: white;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.header-list {
+  display: flex;
+  position: absolute;
+  right: 20px;
+}

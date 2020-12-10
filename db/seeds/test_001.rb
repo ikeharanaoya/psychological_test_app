@@ -1,4 +1,4 @@
-problem = Problem.create(title:'賢者スケール', text:'1.多様な視点への寛容さ 
+problem = Problem.create(title:'賢者スケール', text:'  1.多様な視点への寛容さ 
   2.あいまいで複雑な問題への決断力 
   3.感情コントロール 
   4.他者への共感や思いやり 

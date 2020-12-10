@@ -1,14 +1,14 @@
-<li class='list'>
-
-  <div class='item-info'>
-    <%= link_to problem_path(problem) do %>
-      <h3 class='item-name'>
-        <%= problem.title %>
-      </h3>
-    <% end %>
-    <% if user_signed_in? %>
-      <%= link_to '履歴' , problem_user_path(problem.id,current_user.id), method: :get %>
-    <% end %>
+<li class='problem-list'>
+  <div class='problem-title'>
+    ■<%= problem.title %>
   </div>
-
+  <div class='problem-info'>
+    <div class='problem-text'><%= problem.text %></div>
+    <div class='problem-btn'>
+      <%= link_to '診断', problem_path(problem), class: 'test' %>
+      <% if user_signed_in? %>
+        <%= link_to '履歴' , problem_user_path(problem.id,current_user.id), method: :get ,class: 'log'%>
+      <% end %>
+    </div>
+  </div>
 </li>
