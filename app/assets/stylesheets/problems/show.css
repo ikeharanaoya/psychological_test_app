@@ -60,6 +60,13 @@
 .question-radio>input[type='radio']:checked ~ label{
   color: #faee2e;
 }
+.question-error{
+  font-size: 15px;
+  color: red;
+  display: flex;
+  align-items: flex-end;
+  margin: 0 0 2px 6px;
+}
 .question-submit{
   width: 100%;
   background-color: red;

@@ -24,6 +24,9 @@
               <%# ラジオボタンの繰り返し %>
             </div>
             <div class='question-radio'>
+              <% if f.object.errors.any? %>
+                <div class='question-error'>選択してください。</div>
+              <% end %>
               <% @questions[count].valuation.times do |num| %>
                 <%# ラジオボタン %>
                 <%= f.radio_button :answer, 5-num %>
@@ -32,8 +35,6 @@
             </div>
             <%= f.hidden_field  :question_id, value: @questions[count].id %>
           </li>
-          <%# エラーメッセージの部分テンプレート呼び出し %>
-          <%= render 'shared/error_messages', model: f.object %>
           <% count += 1 %>
         <% end %>
       </ul>
