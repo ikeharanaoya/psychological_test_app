@@ -14,7 +14,7 @@
 }
 .problem-show{
   padding: 0 5vw;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 100px);
   overflow: scroll;
 }
 .problem-show-info{
@@ -59,4 +59,10 @@
 .question-radio>label:hover ~ label,
 .question-radio>input[type='radio']:checked ~ label{
   color: #faee2e;
+}
+.question-submit{
+  width: 100%;
+  background-color: red;
+  border-radius: 4px;
+  color: white;
 }

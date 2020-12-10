@@ -37,9 +37,8 @@
           <% count += 1 %>
         <% end %>
       </ul>
-      <br>
       <input name="id" type="hidden" value=<%= @problem.id %>>
-      <%= answers.submit '回答' %>
+      <%= answers.submit '回答' ,class: 'question-submit'%>
     <% end %>
   </div>
 </div>
