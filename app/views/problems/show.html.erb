@@ -11,36 +11,32 @@
   </div>
   <div class='main'>
     <%= form_with model: [@problem,@answers], url: problems_path, local: true do |answers| %>
-      <div class='question-contents'>
-        <ul class='question-lists'>
-          <% count = 0 %>
-          <%= answers.fields_for :answers do |f| %>
-            <li class='question-list'>
-              <div class='question'>
-                <div class='question-info'>
-                  <%# 項番 %>
-                  <%= @questions[count].number %>.
-                  <%# 質問文 %>
-                  <%= @questions[count].text %>
-                  <br>
-                  <%# ラジオボタンの繰り返し %>
-                </div>
-                <div class='question-radio'>
-                  <% @questions[count].valuation.times do |num| %>
-                    <%# ラジオボタン %>
-                    <%= f.radio_button :answer, 5-num %>
-                    <%= f.label "answer_#{5-num}", '★' %>
-                  <% end %>
-                </div>
-                <%= f.hidden_field  :question_id, value: @questions[count].id %>
-              </div>
-            </li>
-            <%# エラーメッセージの部分テンプレート呼び出し %>
-            <%= render 'shared/error_messages', model: f.object %>
-            <% count += 1 %>
-          <% end %>
-        </ul>
-      </div>
+      <ul class='question-lists'>
+        <% count = 0 %>
+        <%= answers.fields_for :answers do |f| %>
+          <li class='question-list'>
+            <div class='question-info'>
+              <%# 項番 %>
+              <%= @questions[count].number %>.
+              <%# 質問文 %>
+              <%= @questions[count].text %>
+              <br>
+              <%# ラジオボタンの繰り返し %>
+            </div>
+            <div class='question-radio'>
+              <% @questions[count].valuation.times do |num| %>
+                <%# ラジオボタン %>
+                <%= f.radio_button :answer, 5-num %>
+                <%= f.label "answer_#{5-num}", '★' %>
+              <% end %>
+            </div>
+            <%= f.hidden_field  :question_id, value: @questions[count].id %>
+          </li>
+          <%# エラーメッセージの部分テンプレート呼び出し %>
+          <%= render 'shared/error_messages', model: f.object %>
+          <% count += 1 %>
+        <% end %>
+      </ul>
       <br>
       <input name="id" type="hidden" value=<%= @problem.id %>>
       <%= answers.submit '回答' %>
