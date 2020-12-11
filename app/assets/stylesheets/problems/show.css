@@ -26,7 +26,6 @@
 .problem-show-text{
   white-space: pre-wrap;
   margin: 0 10px;
-  overflow: scroll;
 }
 .question-list{
   background-color: #DCF2FD;

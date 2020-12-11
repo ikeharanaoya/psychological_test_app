@@ -1,3 +1,28 @@
-作成完了
-
-<%= render 'shared/radar_chart', model: @scores_js %>
+<header>
+    <div class='problem-header'>
+      <div class='problem-header-title'>
+        <%= @problem.title %>
+      </div>
+    </div>
+</header>
+<div class='score-create'>
+  <div class='score-create-info'>
+    <div class='score-create-text'><%= @problem.text %></div>
+  </div>
+  <div class='scores-main'>
+    <div class='scores-info'>
+      <div class='score-sum'>
+        <span>■合計 60点</span>
+      </div>
+      <div class='score-up'>
+      <span>■強み</span>
+      </div>
+      <div class='score-down'>
+      <span>■弱み</span>
+      </div>
+    </div>
+    <div class='scores-main-chart'>
+      <%= render 'shared/radar_chart', model: @scores_js %>
+    </div>
+  </div>
+</div>
