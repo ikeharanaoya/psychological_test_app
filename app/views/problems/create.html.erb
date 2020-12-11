@@ -12,13 +12,19 @@
   <div class='scores-main'>
     <div class='scores-info'>
       <div class='score-sum'>
-        <span>■合計 60点</span>
+        <span>■合計 <%= @sum %>点</span>
       </div>
       <div class='score-up'>
-      <span>■強み</span>
+        <span>■強み</span>
+        <% @scores_up.each do |up| %>
+          <%= up.division[:text] %>
+        <% end %>
       </div>
       <div class='score-down'>
-      <span>■弱み</span>
+        <span>■その他</span>
+        <% @scores_down.each do |down| %>
+          <%= down.division[:text] %>
+        <% end %>
       </div>
     </div>
     <div class='scores-main-chart'>
