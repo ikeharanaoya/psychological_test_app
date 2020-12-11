@@ -1,3 +1,43 @@
-作成完了
-
-<%= render 'shared/radar_chart', model: @scores_js %>
+<header>
+    <div class='problem-header'>
+      <div class='problem-header-title'>
+        <%= @problem.title %>
+      </div>
+    </div>
+</header>
+<div class='score-create'>
+  <div class='score-create-info'>
+    <div class='score-create-text'><%= @problem.text %></div>
+  </div>
+  <div class='scores-main'>
+    <div class='scores-info'>
+      <div class='score-sum'>
+        <ul class='score-sum-list'>
+          <li>■合計</li>
+          <li class='score-point'><%= " #{@sum}点" %></li>
+        </ul>
+      </div>
+      <div class='score-up'>
+        <div class='score-up-text'>■強み</div>
+          <% @scores_up.each do |up| %>
+            <ul class='score-up-list'>
+                <li><%= up.division[:text] %></li>
+                <li class='score-point'><%= " #{up.sum}点" %></li>
+            </ul>
+          <% end %>
+      </div>
+      <div class='score-down'>
+        <div class='score-down-text'>■その他</div>
+          <% @scores_down.each do |down| %>
+            <ul class='score-down-list'>
+                <li><%= down.division[:text] %></li>
+                <li class='score-point'><%= " #{down.sum}点" %></li>
+            </ul>
+          <% end %>
+      </div>
+    </div>
+    <div class='scores-main-chart'>
+      <%= render 'shared/radar_chart', model: @scores_js %>
+    </div>
+  </div>
+</div>

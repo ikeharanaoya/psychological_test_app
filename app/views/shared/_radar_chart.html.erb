@@ -1,4 +1,4 @@
-<div>
+<div class='reader-chart'>
 <canvas id=<%=model.object_id%>></canvas>
 <script>
 // グローバル変数にモデルデータを格納する
@@ -53,6 +53,7 @@ var myChart = new Chart(ctx, {
   },
   options: {
     title: {
+      fullWidth: true,
       display: true,
       text: '賢者スケール'
     },

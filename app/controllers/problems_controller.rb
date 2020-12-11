@@ -59,6 +59,8 @@ class ProblemsController < ApplicationController
       num += 1
     end
 
+    # 合計値
+    @sum = 0
     # 回答結果を評価に設定する
     @answers.answers.each do |answer|
       # 答えの反転確認
@@ -75,8 +77,11 @@ class ProblemsController < ApplicationController
       score.sum += answer.answer
       # 評価と回答を紐づける
       score.answers.build(answer.attributes)
+
+      # 合計値
+      @sum += answer.answer
     end
-    # binding.pry
+
     # グラフ用に情報を整理（合計、区分、本文）
     @scores_js = @scores.scores.to_json(only: [:sum],
                                         include: { division: { only: [:division_id, :text] } })
@@ -86,6 +91,30 @@ class ProblemsController < ApplicationController
       # ログインしている場合、評価&回答を保存
       @scores.save
     end
+
+    #合計点数順に降順
+    @score_sort = @scores.scores.sort_by { |a| a[:sum] }.reverse
+
+    # 上位の配列
+    @scores_up = []
+    # 下位の配列
+    @scores_down = []
+    # 同列確認用の変数
+    score_point = 0 
+    # ソートした配列で繰り返す
+    @score_sort.each do |score|
+      # 上位が２つ以下または、基準値と同列の場合
+      if @scores_up.length < 2 || score_point == score.sum
+        # 上位に追加
+        @scores_up += [score]
+        # 点数を更新
+        score_point = score.sum
+      else
+        # 下位に追加
+        @scores_down += [score]
+      end
+    end
+    # binding.pry
   end
 
   private
