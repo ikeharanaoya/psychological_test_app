@@ -9,12 +9,24 @@
   <div class='problem-show-info'>
     <div class='problem-show-text'><%= @scores[0].problem.text %></div>
   </div>
-
-  <%= render 'shared/bar_chart', model: @sum_list_js %>
+  <div class='score-bar-main'>
+    <div class='score-bar-info'>
+      <div class='scores-bar'>
+          <ul class='scores-bar-list'>
+              <li>■１回目</li>
+              <li>○○点</li>
+              <li>⬆︎⬆︎</li>
+          </ul>
+      </div>
+    </div>
+    <div class='scores-main-bar'>
+      <%= render 'shared/bar_chart', model: @sum_list_js %>
+    </div>
+  </div>
   <% count = 0%>
   <% @scores_js.each do |score_js| %>
-    <div class='user-show-info'>
-      <div class='user-show-text'><%= "■#{@sum_list.keys[count]}回目" %></div>
+    <div class='score-count'>
+      <div class='score-count-text'><%= "■#{@sum_list.keys[count]}回目" %></div>
     </div>
     <div class='scores-main'>
       <div class='scores-info'>
