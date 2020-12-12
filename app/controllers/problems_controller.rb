@@ -92,7 +92,7 @@ class ProblemsController < ApplicationController
       @scores.save
     end
 
-    #合計点数順に降順
+    # 合計点数順に降順
     @score_sort = @scores.scores.sort_by { |a| a[:sum] }.reverse
 
     # 上位の配列
@@ -100,7 +100,7 @@ class ProblemsController < ApplicationController
     # 下位の配列
     @scores_down = []
     # 同列確認用の変数
-    score_point = 0 
+    score_point = 0
     # ソートした配列で繰り返す
     @score_sort.each do |score|
       # 上位が２つ以下または、基準値と同列の場合

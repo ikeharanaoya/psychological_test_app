@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     # ユーザーの評価履歴を取得(問題ID、ユーザID)
-    @scores = Score.includes(:division,:problem).where(problem_id: params['problem_id'], user_id: params['id'])
+    @scores = Score.includes(:division, :problem).where(problem_id: params['problem_id'], user_id: params['id'])
     # 合計値リスト(降順)
     @sum_list = @scores.order(count: :desc).group(:count).sum(:sum)
 
@@ -28,9 +28,9 @@ class UsersController < ApplicationController
     # 回数毎に繰り返し
     @sum_list.each do |sum|
       # 前回の結果との比較処理
-      status = bar_status(@before_score ,sum[1])
+      status = bar_status(@before_score, sum[1])
       # 回数毎に情報を設定（回数、合計、比較結果）
-      bar_item = {count: sum[0],sum: sum[1],status: status}
+      bar_item = { count: sum[0], sum: sum[1], status: status }
       # 情報を配列に格納
       @scores_bar.push(bar_item)
       # 比較用に合計値を格納
@@ -50,15 +50,15 @@ class UsersController < ApplicationController
   # 0:等倍または初回
   # 1:プラス
   # -1:マイナス
-  def bar_status(before,after)
+  def bar_status(before, after)
     # 差分を取得
     num = after - before
     if num == 0 || before == 0
-      return 0
+      0
     elsif num > 0
-      return 1
+      1
     else
-      return -1
+      -1
     end
   end
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def radar_scores_set(scores)
     # 戻り値の情報
     score = {}
-    #合計点数順に降順
+    # 合計点数順に降順
     score_sort = scores.sort_by { |a| a[:sum] }.reverse
     # 上位の配列
     scores_up = []
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
     # 合計点
     sum = 0
     # 同列確認用の変数
-    score_point = 0 
+    score_point = 0
     # ソートした配列で繰り返す
     score_sort.each do |score|
       # 上位が２つ以下または、基準値と同列の場合
@@ -93,6 +93,6 @@ class UsersController < ApplicationController
     end
 
     # 戻り値に情報を設定（回数、上位、下位、合計値）
-    score = {count: scores[0].count, up: scores_up,down: scores_down,sum: sum}
+    score = { count: scores[0].count, up: scores_up, down: scores_down, sum: sum }
   end
 end
