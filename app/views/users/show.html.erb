@@ -12,11 +12,17 @@
   <div class='score-bar-main'>
     <div class='score-bar-info'>
       <div class='scores-bar'>
+        <% @scores_bar.each do |score_bar|%>
           <ul class='scores-bar-list'>
-              <li>■１回目</li>
-              <li>○○点</li>
-              <li>⬆︎⬆︎</li>
+              <li><%= score_bar[:count] %>回目</li>
+              <li><%= score_bar[:sum] %>点</li>
+              <% if score_bar[:status] == 1 %>
+                <li class='bar-up'>⬆︎⬆︎</li>
+              <% elsif score_bar[:status] == -1 %>
+                <li class='bar-down'>⬇︎⬇︎</li>
+              <% end %>
           </ul>
+        <% end %>
       </div>
     </div>
     <div class='scores-main-bar'>

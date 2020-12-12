@@ -29,6 +29,12 @@
 .scores-bar-list>li{
   padding-left: 10px;
 }
+.bar-up{
+  color: red;
+}
+.bar-down{
+  color: blue;
+}
 .score-count{
   background-color: #DCF2FD;
   border-radius: 4px;
