@@ -16,6 +16,6 @@ class UsersController < ApplicationController
     end
     # 合計値リストの変換
     @sum_list_js = @sum_list.to_json
-    binding.pry
+    # binding.pry
   end
 end

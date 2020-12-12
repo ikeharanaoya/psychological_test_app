@@ -9,6 +9,32 @@
   <div class='problem-show-info'>
     <div class='problem-show-text'><%= @scores[0].problem.text %></div>
   </div>
-<%= render 'shared/bar_chart', model: @sum_list_js %>
-<%= render partial: "shared/radar_chart", collection: @scores_js, as: "model" %>
+
+  <%= render 'shared/bar_chart', model: @sum_list_js %>
+  <% count = 0%>
+  <% @scores_js.each do |score_js| %>
+    <div class='user-show-info'>
+      <div class='user-show-text'><%= "■#{@sum_list.keys[count]}回目" %></div>
+    </div>
+    <div class='scores-main'>
+      <div class='scores-info'>
+        <div class='score-sum'>
+          <ul class='score-sum-list'>
+            <li>■合計</li>
+            <li class='score-point'><%= " 点" %></li>
+          </ul>
+        </div>
+        <div class='score-up'>
+          <div class='score-up-text'>■強み</div>
+        </div>
+        <div class='score-down'>
+          <div class='score-down-text'>■その他</div>
+        </div>
+      </div>
+      <div class='scores-main-chart'>
+        <%= render 'shared/radar_chart', model: score_js %>
+      </div>
+    </div>
+    <% count += 1 %>
+  <% end %>
 </div>
