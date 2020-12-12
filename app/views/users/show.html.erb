@@ -1,3 +1,70 @@
-<h1>ユーザー情報</h1>
-<%= render 'shared/bar_chart', model: @sum_list_js %>
-<%= render partial: "shared/radar_chart", collection: @scores_js, as: "model" %>
+<header>
+    <div class='problem-header'>
+      <div class='problem-header-title'>
+        <%= @scores[0].problem.title %>
+      </div>
+    </div>
+</header>
+<div class='problem-show'>
+  <div class='problem-show-info'>
+    <div class='problem-show-text'><%= @scores[0].problem.text %></div>
+  </div>
+  <div class='score-bar-main'>
+    <div class='score-bar-info'>
+      <div class='scores-bar'>
+        <% @scores_bar.each do |score_bar|%>
+          <ul class='scores-bar-list'>
+              <li><%= score_bar[:count] %>回目</li>
+              <li><%= score_bar[:sum] %>点</li>
+              <% if score_bar[:status] == 1 %>
+                <li class='bar-up'>⬆︎⬆︎</li>
+              <% elsif score_bar[:status] == -1 %>
+                <li class='bar-down'>⬇︎⬇︎</li>
+              <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+    <div class='scores-main-bar'>
+      <%= render 'shared/bar_chart', model: @sum_list_js %>
+    </div>
+  </div>
+  <% count = 0%>
+  <% @scores_js.each do |score_js| %>
+    <div class='score-count'>
+      <div class='score-count-text'>■<%= @radar_chart[count][:count] %>回目</div>
+    </div>
+    <div class='scores-main'>
+      <div class='scores-info'>
+        <div class='score-sum'>
+          <ul class='score-sum-list'>
+            <li>■合計</li>
+            <li class='score-point'><%= @radar_chart[count][:sum] %>点</li>
+          </ul>
+        </div>
+        <div class='score-up'>
+          <div class='score-up-text'>■強み</div>
+          <% @radar_chart[count][:up].each do |up| %>
+            <ul class='score-up-list'>
+                <li><%= up.division[:text] %></li>
+                <li class='score-point'><%= " #{up.sum}点" %></li>
+            </ul>
+          <% end %>
+        </div>
+        <div class='score-down'>
+          <div class='score-down-text'>■その他</div>
+          <% @radar_chart[count][:down].each do |down| %>
+            <ul class='score-down-list'>
+                <li><%= down.division[:text] %></li>
+                <li class='score-point'><%= " #{down.sum}点" %></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+      <div class='scores-main-chart'>
+        <%= render 'shared/radar_chart', model: score_js %>
+      </div>
+    </div>
+    <% count += 1 %>
+  <% end %>
+</div>

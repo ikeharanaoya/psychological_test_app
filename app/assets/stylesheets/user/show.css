@@ -1,0 +1,62 @@
+.score-bar-main{
+  display: flex;
+  justify-content: space-between;
+  overflow: scroll;
+  margin: 10px 0;
+}
+.score-bar-info{
+  background-color: #DCF2FD;
+  border-radius: 4px;
+  border: 4px solid #76D6FF;
+  margin-bottom: 4px;
+  width: calc(100% - 570px);
+  min-width: 300px;
+  max-height: 275px;
+  overflow: scroll;
+}
+.scores-bar{
+  margin: 5px 1vw;
+}
+.scores-bar-list{
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  margin: 5px 4px;
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+.scores-bar-list>li{
+  padding-left: 10px;
+}
+.bar-up{
+  color: red;
+}
+.bar-down{
+  color: blue;
+}
+.score-count{
+  background-color: #DCF2FD;
+  border-radius: 4px;
+  border: 4px solid #76D6FF;
+  margin: 10px 0;
+  font-size: 25px;
+  font-weight: bold;
+}
+.score-count-text{
+  white-space: pre-wrap;
+  margin: 5px 1vw;
+  border-bottom: 1px solid black;
+}
+.scores-main-bar{
+  width: 570px;
+  min-width: 570px;
+  max-height: 285px;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+.bar-chart{
+  max-width: 570px;
+  min-width: 570px;
+}
