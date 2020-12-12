@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     # ユーザーの評価履歴を取得(問題ID、ユーザID)
-    @scores = Score.includes(:division).where(problem_id: params['problem_id'], user_id: params['id'])
+    @scores = Score.includes(:division,:problem).where(problem_id: params['problem_id'], user_id: params['id'])
     # 合計値リスト
     @sum_list = @scores.group(:count).sum(:sum)
 
@@ -16,6 +16,6 @@ class UsersController < ApplicationController
     end
     # 合計値リストの変換
     @sum_list_js = @sum_list.to_json
-    # binding.pry
+    binding.pry
   end
 end
