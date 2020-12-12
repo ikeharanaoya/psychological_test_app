@@ -5,5 +5,10 @@
       </div>
     </div>
 </header>
+<div class='problem-show'>
+  <div class='problem-show-info'>
+    <div class='problem-show-text'><%= @scores[0].problem.text %></div>
+  </div>
 <%= render 'shared/bar_chart', model: @sum_list_js %>
 <%= render partial: "shared/radar_chart", collection: @scores_js, as: "model" %>
+</div>
