@@ -72,6 +72,8 @@ class UsersController < ApplicationController
     scores_up = []
     # 下位の配列
     scores_down = []
+    # 合計点
+    sum = 0
     # 同列確認用の変数
     score_point = 0 
     # ソートした配列で繰り返す
@@ -86,8 +88,11 @@ class UsersController < ApplicationController
         # 下位に追加
         scores_down += [score]
       end
+      # 合計値にプラス
+      sum += score.sum
     end
 
-    score = {up: scores_up,down: scores_down,point: score_point}
+    # 戻り値に情報を設定（回数、上位、下位、合計値）
+    score = {count: scores[0].count, up: scores_up,down: scores_down,sum: sum}
   end
 end
