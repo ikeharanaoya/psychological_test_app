@@ -1,7 +1,6 @@
 class ProblemsController < ApplicationController
   # トップ画面
   def index
-
     # ログイン確認
     if user_signed_in?
       # 問題情報取得(ユーザー情報含む)

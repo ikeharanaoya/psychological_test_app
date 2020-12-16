@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def show
     # ユーザーの評価履歴を取得(問題ID、ユーザID)
     @scores = Score.includes(:division, :problem).where(problem_id: params['problem_id'], user_id: params['id'])
-    
+
     # ユーザーの評価履歴が存在しない場合は、トップ画面に遷移
     redirect_to root_path and return if @scores.blank?
 
