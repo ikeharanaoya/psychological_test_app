@@ -1,8 +1,15 @@
 class ProblemsController < ApplicationController
   # トップ画面
   def index
-    # 問題情報取得
-    @problems = Problem.includes(questions: :division).all
+
+    # ログイン確認
+    if user_signed_in?
+      # 問題情報取得(ユーザー情報含む)
+      @problems = Problem.joins("LEFT OUTER JOIN `scores` ON `problems`.`id` = `scores`.`problem_id` AND `scores`.`user_id`= #{current_user.id} AND `scores`.`count`= 1 AND `scores`.`division_id`= 1").includes([questions: :division])
+    else
+      # 問題情報取得
+      @problems = Problem.includes(:scores, [questions: :division])
+    end
   end
 
   # 心理テスト画面
