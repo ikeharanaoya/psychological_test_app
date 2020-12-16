@@ -68,6 +68,7 @@
 |-------------|------------|-------------------------------|
 | division_id | integer    | null: false                   |
 | text        | string     | null: false                   |
+| standard    | integer    | null: false                   |
 | problem     | references | null: false foreign_key: true |
 
 ### Association
