@@ -5,6 +5,8 @@ class CreateDivisions < ActiveRecord::Migration[6.0]
       t.integer :division_id,   null: false
       # 本文
       t.string :text,   null: false
+      # 基準
+      t.integer :standard,   null: false
       # problems テーブル
       t.references :problem,    null: false, foreign_key: true
       

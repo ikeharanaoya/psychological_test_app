@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   def show
     # ユーザーの評価履歴を取得(問題ID、ユーザID)
     @scores = Score.includes(:division, :problem).where(problem_id: params['problem_id'], user_id: params['id'])
+
+    # ユーザーの評価履歴が存在しない場合は、トップ画面に遷移
+    redirect_to root_path and return if @scores.blank?
+
     # 合計値リスト(降順)
     @sum_list = @scores.order(count: :desc).group(:count).sum(:sum)
 
@@ -13,7 +17,7 @@ class UsersController < ApplicationController
     @sum_list.each do |sum|
       # 回数毎のレーダーチャート用に情報を整理（合計、区分、本文）
       @scores_js += [@scores.where(count: sum[0]).to_json(only: [:sum],
-                                                          include: { division: { only: [:division_id, :text] } })]
+                                                          include: { division: { only: [:division_id, :text, :standard] } })]
       # 順位付けした情報を設定
       @radar_chart.push(radar_scores_set(@scores.where(count: sum[0])))
     end

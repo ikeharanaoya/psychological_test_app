@@ -1,19 +1,11 @@
-problem = Problem.create(title:'賢者スケール', text:'  1.多様な視点への寛容さ 
-  2.あいまいで複雑な問題への決断力 
-  3.感情コントロール 
-  4.他者への共感や思いやり 
-  5.自己分析力または洞察力 
-  6.他者へのアドバイス力
-  
-  いつも穏やかな態度を保ちつつ他者へのアドバイスがうまい人ってことで、確かに一般的な「賢者」のイメージにも当てはまる感じがしますね。
-  
-  もちろん常に完璧な賢者なんてなかなかいないとは思いますが、今回のテストで定期的に自分の「賢者レベル」を判断し、自己改善のよすがにしていただくのは非常によいことかと思います。具体的には、以下の24問について5点満点で採点していただければ幸いです（「当てはまる！」と思うものほど高得点）。')
-Division.create(division_id:1,text:'多様な視点への寛容さ', problem_id: problem.id)
-Division.create(division_id:2,text:'あいまいで複雑な問題への決断力', problem_id: problem.id)
-Division.create(division_id:3,text:'感情コントロール', problem_id: problem.id)
-Division.create(division_id:4,text:'他者への共感や思いやり', problem_id: problem.id)
-Division.create(division_id:5,text:'自己分析力または洞察力', problem_id: problem.id)
-Division.create(division_id:6,text:'他者へのアドバイス力',  problem_id: problem.id)
+# 賢者スケール
+problem = Problem.create(title:'賢者スケール', text:'自分の「賢者レベル」を判断できるテスト')
+Division.create(division_id:1,text:'多様な視点への寛容さ',standard: 15, problem_id: problem.id)
+Division.create(division_id:2,text:'あいまいで複雑な問題への決断力',standard: 15, problem_id: problem.id)
+Division.create(division_id:3,text:'感情コントロール',standard: 15, problem_id: problem.id)
+Division.create(division_id:4,text:'他者への共感や思いやり',standard: 15, problem_id: problem.id)
+Division.create(division_id:5,text:'自己分析力または洞察力',standard: 15, problem_id: problem.id)
+Division.create(division_id:6,text:'他者へのアドバイス力',standard: 15,  problem_id: problem.id)
 Question.create(number:1,text:'他人の気持ちを察知するのが得意だ。',division_id:6,valuation:5, problem_id: problem.id)
 Question.create(number:2,text:'決断するのが苦手だ。',division_id:2,valuation:5,inversion:true, problem_id: problem.id)
 Question.create(number:3,text:'友人関係を維持するのが苦手だ。',division_id:4,valuation:5,inversion:true, problem_id: problem.id)

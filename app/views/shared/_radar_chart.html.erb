@@ -28,10 +28,13 @@ function unEscapeHtml(str) {
 var sum_data = []
 // 区分
 var labels = []
+// 基準
+var standard_data = []
 
 modeldata.forEach((elem, index) => {
     sum_data.push(elem.sum);
     labels.push(elem.division.text);
+    standard_data.push(elem.division.standard)
 });
 
 var ctx = document.getElementById('<%= model.object_id %>');
@@ -48,7 +51,7 @@ var myChart = new Chart(ctx, {
       label: '評価基準',
       backgroundColor: "rgba(0,0,0,0.0)",
       borderColor: "rgba(255,0,0,1)",
-      data:  [15,15,15,15,15,15] //合計の配列設定
+      data:  standard_data //基準の配列設定
     }]
   },
   options: {

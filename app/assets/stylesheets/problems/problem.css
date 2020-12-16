@@ -16,6 +16,7 @@
 }
 .problem-info{
   display: flex;
+  justify-content: space-between;
 }
 .problem-text{
   white-space: pre-wrap;
