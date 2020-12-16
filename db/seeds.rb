@@ -8,3 +8,4 @@
 require './db/seeds/test_001.rb'
 require './db/seeds/test_002.rb'
 require './db/seeds/test_003.rb'
+require './db/seeds/test_004.rb'
