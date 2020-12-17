@@ -30,11 +30,15 @@ var sum_data = []
 var labels = []
 // 基準
 var standard_data = []
+// タイトル
+var title = ''
+
 
 modeldata.forEach((elem, index) => {
     sum_data.push(elem.sum);
     labels.push(elem.division.text);
-    standard_data.push(elem.division.standard)
+    standard_data.push(elem.division.standard);
+    title = elem.problem.title;
 });
 
 var ctx = document.getElementById('<%= model.object_id %>');
@@ -58,7 +62,7 @@ var myChart = new Chart(ctx, {
     title: {
       fullWidth: true,
       display: true,
-      text: '賢者スケール'
+      text: title
     },
     scale:{
       ticks:{

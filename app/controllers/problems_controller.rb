@@ -90,7 +90,7 @@ class ProblemsController < ApplicationController
 
     # グラフ用に情報を整理（合計、区分、本文）
     @scores_js = @scores.scores.to_json(only: [:sum],
-                                        include: { division: { only: [:division_id, :text, :standard] } })
+                                        include: { division: { only: [:division_id, :text, :standard] } , problem: { only: [:title] } })
 
     # ログイン確認
     if user_signed_in?
