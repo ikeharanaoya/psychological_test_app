@@ -137,7 +137,7 @@ class ProblemsController < ApplicationController
     count = 1
 
     # 回数の最大値取得
-    max = Score.maximum(:count)
+    max = Score.where(problem_id: params[:id]).maximum(:count)
     unless max.nil?
       # 空以外は値を追加する
       count = max + 1
