@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       # 前回の結果との比較処理
       status = bar_status(@before_score, sum[1])
       # 回数毎に情報を設定（回数、合計、比較結果）
-      bar_item = { count: sum[0], sum: sum[1], status: status }
+      bar_item = { count: sum[0], sum: sum[1], status: status, title: @scores[0].problem.title}
       # 情報を配列に格納
       @scores_bar.push(bar_item)
       # 比較用に合計値を格納

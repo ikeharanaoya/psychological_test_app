@@ -43,7 +43,7 @@ var myChart = new Chart(ctx, {
   data: {
     labels: labels,
     datasets: [{
-      label: '賢者スケール',
+      label: '<%= @scores_bar[0][:title]%>',
       data: sum_data,
       backgroundColor: "rgba(0,0,200,0.4)",
       borderColor: "rgba(0,0,200,1)",
