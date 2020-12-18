@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_12_04_022522) do
     t.integer "division_id", null: false
     t.string "text", null: false
     t.integer "standard", null: false
+    t.integer "max", null: false
     t.bigint "problem_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

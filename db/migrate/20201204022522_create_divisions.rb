@@ -7,6 +7,8 @@ class CreateDivisions < ActiveRecord::Migration[6.0]
       t.string :text,   null: false
       # 基準
       t.integer :standard,   null: false
+      # 最大値
+      t.integer :max,   null: false
       # problems テーブル
       t.references :problem,    null: false, foreign_key: true
       
