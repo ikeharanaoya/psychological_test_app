@@ -1,8 +1,8 @@
 # リスニングスキル診断
 problem = Problem.create(title: 'リスニングスキル診断', text: '人間関係の改善に欠かせない「自分の傾聴スキル」をチェックするための14問')
-Division.create(division_id: 1,text: '予備リスニング',standard: 9,problem_id: problem.id)
-Division.create(division_id: 2,text: 'アクティブリスニング',standard: 20,problem_id: problem.id)
-Division.create(division_id: 3,text: '共感リスニング',standard: 12,problem_id: problem.id)
+Division.create(division_id: 1,text: '予備リスニング',standard: 9,max: 15,problem_id: problem.id)
+Division.create(division_id: 2,text: 'アクティブリスニング',standard: 20,max: 35,problem_id: problem.id)
+Division.create(division_id: 3,text: '共感リスニング',standard: 12,max: 20,problem_id: problem.id)
 Question.create(number: 1,text: 'より多くの仕事をこなすために、電話で人と話しているときでも、電子メールやインスタントメッセージに返信する。',division_id: 1,valuation: 5,inversion: 1,problem_id: problem.id)
 Question.create(number: 2,text: '相手が言っていることをより明確に理解するために、会話中に大事なポイントを繰り返す。',division_id: 3,valuation: 5,inversion: 0,problem_id: problem.id)
 Question.create(number: 3,text: '相手がデリケートな話題について話しているときは、相手がリラックスできるように努力する。',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)

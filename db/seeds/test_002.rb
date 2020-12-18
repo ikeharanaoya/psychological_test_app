@@ -1,9 +1,9 @@
 # MTQ-10
 problem = Problem.create(title: 'MTQ-10', text: '自分のタフさを測る10の質問')
-Division.create(division_id: 1,text: 'コントロール',standard: 9,problem_id: problem.id)
-Division.create(division_id: 2,text: 'コミットメント',standard: 6,problem_id: problem.id)
-Division.create(division_id: 3,text: 'チャレンジ',standard: 7,problem_id: problem.id)
-Division.create(division_id: 4,text: 'コンフィデンス',standard: 10,problem_id: problem.id)
+Division.create(division_id: 1,text: 'コントロール',standard: 9,max: 15,problem_id: problem.id)
+Division.create(division_id: 2,text: 'コミットメント',standard: 6,max: 10,problem_id: problem.id)
+Division.create(division_id: 3,text: 'チャレンジ',standard: 7,max: 10,problem_id: problem.id)
+Division.create(division_id: 4,text: 'コンフィデンス',standard: 10,max: 15,problem_id: problem.id)
 Question.create(number: 1,text: '重度なプレッシャーがかかった状況でも冷静にいられる',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)
 Question.create(number: 2,text: 'トラブルが起きる前に、そのことを心配する傾向がある',division_id: 3,valuation: 5,inversion: 1,problem_id: problem.id)
 Question.create(number: 3,text: 'やらねばいけないタスクがあるのに、いつもモチベーションを上げるのに苦労する',division_id: 2,valuation: 5,inversion: 1,problem_id: problem.id)

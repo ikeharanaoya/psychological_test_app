@@ -1,8 +1,8 @@
 # ワーク・エンゲージメント尺度
 problem = Problem.create(title: 'ワーク・エンゲージメント尺度', text: '「自分は仕事にやりがいを感じているか？」を判断できるテスト')
-Division.create(division_id: 1,text: '活力',standard: 21,problem_id: problem.id)
-Division.create(division_id: 2,text: '熱意',standard: 17,problem_id: problem.id)
-Division.create(division_id: 3,text: '没頭',standard: 21,problem_id: problem.id)
+Division.create(division_id: 1,text: '活力',standard: 21,max: 42,problem_id: problem.id)
+Division.create(division_id: 2,text: '熱意',standard: 17,max: 35,problem_id: problem.id)
+Division.create(division_id: 3,text: '没頭',standard: 21,max: 42,problem_id: problem.id)
 Question.create(number: 1,text: '仕事をしていると、活力がみなぎるように感じる。',division_id: 1,valuation: 7,inversion: 0,problem_id: problem.id)
 Question.create(number: 2,text: '自分の仕事に、意義や価値を大いに感じる。 ',division_id: 2,valuation: 7,inversion: 0,problem_id: problem.id)
 Question.create(number: 3,text: '仕事をしていると、時間がたつのが速い。 ',division_id: 3,valuation: 7,inversion: 0,problem_id: problem.id)

@@ -1,8 +1,8 @@
 # プランフルネス・スケール
 problem = Problem.create(title: 'プランフルネス・スケール', text: '自分がゴールを達成できないのはなぜか？がよくわかる30問')
-Division.create(division_id: 1,text: '精神の柔軟性(感情コントロール)',standard: 35,problem_id: problem.id)
-Division.create(division_id: 2,text: '認知戦略(プランニング)',standard: 35,problem_id: problem.id)
-Division.create(division_id: 3,text: '時間感覚(長期的な視野)',standard: 35,problem_id: problem.id)
+Division.create(division_id: 1,text: '精神の柔軟性(感情コントロール)',standard: 35,max: 50,problem_id: problem.id)
+Division.create(division_id: 2,text: '認知戦略(プランニング)',standard: 35,max: 50,problem_id: problem.id)
+Division.create(division_id: 3,text: '時間感覚(長期的な視野)',standard: 35,max: 50,problem_id: problem.id)
 Question.create(number: 1,text: '事前の計画を立てるときは、過去に犯したミスから学んだことを考慮するようにしている',division_id: 3,valuation: 5,inversion: 0,problem_id: problem.id)
 Question.create(number: 2,text: 'ときどき役に立たない計画を思いついてしまう',division_id: 2,valuation: 5,inversion: 1,problem_id: problem.id)
 Question.create(number: 3,text: '何らかの決断をするときには、私は主に現在の状態をもとに判断を行う',division_id: 3,valuation: 5,inversion: 1,problem_id: problem.id)

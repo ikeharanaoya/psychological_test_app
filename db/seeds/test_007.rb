@@ -1,9 +1,9 @@
 # 内向タイプ診断テスト
 problem = Problem.create(title: '内向タイプ診断テスト', text: '自分はどんなタイプの「内向人間」なのか？を判断する40問')
-Division.create(division_id: 1,text: '社会的な内向',standard: 30,problem_id: problem.id)
-Division.create(division_id: 2,text: '思考的な内向',standard: 34,problem_id: problem.id)
-Division.create(division_id: 3,text: '不安的な内向',standard: 30,problem_id: problem.id)
-Division.create(division_id: 4,text: '抑制的な内向',standard: 31,problem_id: problem.id)
+Division.create(division_id: 1,text: '社会的な内向',standard: 30,max: 50,problem_id: problem.id)
+Division.create(division_id: 2,text: '思考的な内向',standard: 34,max: 50,problem_id: problem.id)
+Division.create(division_id: 3,text: '不安的な内向',standard: 30,max: 50,problem_id: problem.id)
+Division.create(division_id: 4,text: '抑制的な内向',standard: 31,max: 50,problem_id: problem.id)
 Question.create(number: 1,text: '大きなお祝いをするよりも、1人か数人の親しい友人と特別な機会を共有するのが好きだ。',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)
 Question.create(number: 2,text: 'たくさんの人と親しい友達になれたら満足だと思う。',division_id: 1,valuation: 5,inversion: 1,problem_id: problem.id)
 Question.create(number: 3,text: 'いつも自分の時間を持てるように1日をスケジュールしている。',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)
