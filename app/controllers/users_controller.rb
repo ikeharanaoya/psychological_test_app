@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     @radar_chart = []
     # 回数毎に繰り返し
     @sum_list.each do |sum|
-      # 回数毎のレーダーチャート用に情報を整理（合計、区分、本文）
+      # 回数毎のレーダーチャート用に情報を整理（合計、区分、基準、最大値、タイトル）
       @scores_js += [@scores.where(count: sum[0]).to_json(only: [:sum],
-                                                          include: { division: { only: [:division_id, :text, :standard] } , problem: { only: [:title] } })]
+                                                          include: { division: { only: [:division_id, :text, :standard, :max] } , problem: { only: [:title] } })]
       # 順位付けした情報を設定
       @radar_chart.push(radar_scores_set(@scores.where(count: sum[0])))
     end
