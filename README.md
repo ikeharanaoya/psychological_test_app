@@ -13,7 +13,7 @@
 https://psychological-test-app.herokuapp.com
 
 # テスト用アカウント
-メールアドレス: sample@sample  
+メールアドレス: sample@sample.com  
 パスワード: sample  
 
 # 利用方法
