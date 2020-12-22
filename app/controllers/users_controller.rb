@@ -15,15 +15,18 @@ class UsersController < ApplicationController
     @radar_chart = []
     # 回数毎に繰り返し
     @sum_list.each do |sum|
-      # 回数毎のレーダーチャート用に情報を整理（合計、区分、本文）
+      # 回数毎のレーダーチャート用に情報を整理（合計、区分、基準、最大値、タイトル）
       @scores_js += [@scores.where(count: sum[0]).to_json(only: [:sum],
-                                                          include: { division: { only: [:division_id, :text, :standard] } , problem: { only: [:title] } })]
+                                                          include: { division: { only: [:division_id, :text, :standard, :max] }, problem: { only: [:title] } })]
       # 順位付けした情報を設定
       @radar_chart.push(radar_scores_set(@scores.where(count: sum[0])))
     end
 
     # 合計値リスト（昇順）
     @sum_list = @scores.order(:count).group(:count).sum(:sum)
+
+    # 最大値取得
+    @max = Division.where(problem_id: params['problem_id']).group(:problem_id).sum(:max)
 
     # 棒グラフ用のリスト生成
     @scores_bar = []
@@ -33,8 +36,8 @@ class UsersController < ApplicationController
     @sum_list.each do |sum|
       # 前回の結果との比較処理
       status = bar_status(@before_score, sum[1])
-      # 回数毎に情報を設定（回数、合計、比較結果）
-      bar_item = { count: sum[0], sum: sum[1], status: status, title: @scores[0].problem.title}
+      # 回数毎に情報を設定（回数、合計、比較結果、最大値）
+      bar_item = { count: sum[0], sum: sum[1], status: status, title: @scores[0].problem.title, max: @max.values[0] }
       # 情報を配列に格納
       @scores_bar.push(bar_item)
       # 比較用に合計値を格納

@@ -1,9 +1,9 @@
 # 日本語版ジョブクラフティング尺度
 problem = Problem.create(title: '日本語版ジョブクラフティング尺度', text: '仕事の「やりがい」を決める21問')
-Division.create(division_id: 1,text: '構造的な仕事の資源の向上',standard: 14,problem_id: problem.id)
-Division.create(division_id: 2,text: '妨害的な仕事の要求度の低減',standard: 12,problem_id: problem.id)
-Division.create(division_id: 3,text: '対人関係における仕事の資源の向上',standard: 9,problem_id: problem.id)
-Division.create(division_id: 4,text: '挑戦的な仕事の要求度の向上',standard: 10,problem_id: problem.id)
+Division.create(division_id: 1,text: '構造的な仕事の資源の向上',standard: 14,max: 25,problem_id: problem.id)
+Division.create(division_id: 2,text: '妨害的な仕事の要求度の低減',standard: 12,max: 30,problem_id: problem.id)
+Division.create(division_id: 3,text: '対人関係における仕事の資源の向上',standard: 9,max: 25,problem_id: problem.id)
+Division.create(division_id: 4,text: '挑戦的な仕事の要求度の向上',standard: 10,max: 25,problem_id: problem.id)
 Question.create(number: 1,text: '私は、自分の能力を伸ばすようにしている',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)
 Question.create(number: 2,text: '私は、自分自身の専門性を高めようとしている',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)
 Question.create(number: 3,text: '私は、仕事で新しいことを学ぶようにしている',division_id: 1,valuation: 5,inversion: 0,problem_id: problem.id)

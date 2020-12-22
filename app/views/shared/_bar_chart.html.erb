@@ -43,7 +43,7 @@ var myChart = new Chart(ctx, {
   data: {
     labels: labels,
     datasets: [{
-      label: '<%= @scores_bar[0][:title]%>',
+      label: '<%= @scores_bar[0][:title] %>',
       data: sum_data,
       backgroundColor: "rgba(0,0,200,0.4)",
       borderColor: "rgba(0,0,200,1)",
@@ -54,7 +54,7 @@ var myChart = new Chart(ctx, {
     scales: {
         yAxes: [{
             ticks: {
-                max: 120,
+                max: <%= @scores_bar[0][:max] %>,
                 beginAtZero:true
             },
         }]

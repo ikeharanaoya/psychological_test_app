@@ -32,6 +32,8 @@ var labels = []
 var standard_data = []
 // タイトル
 var title = ''
+// 最大値
+var max = 0
 
 
 modeldata.forEach((elem, index) => {
@@ -39,6 +41,9 @@ modeldata.forEach((elem, index) => {
     labels.push(elem.division.text);
     standard_data.push(elem.division.standard);
     title = elem.problem.title;
+    if (max < elem.division.max) {
+      max = elem.division.max;
+    }
 });
 
 var ctx = document.getElementById('<%= model.object_id %>');
@@ -66,8 +71,8 @@ var myChart = new Chart(ctx, {
     },
     scale:{
       ticks:{
-        suggestedMin: 4,
-        suggestedMax: 20,
+        suggestedMin: 0,
+        suggestedMax: max,
         stepsize: 4,
         callback: function(value, index, values){
           return value + '点'
