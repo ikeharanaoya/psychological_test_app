@@ -29,8 +29,8 @@
               <% end %>
               <% @questions[count].valuation.times do |num| %>
                 <%# ラジオボタン %>
-                <%= f.radio_button :answer, 5-num %>
-                <%= f.label "answer_#{5-num}", '★' %>
+                <%= f.radio_button :answer, @questions[count].valuation-num %>
+                <%= f.label "answer_#{@questions[count].valuation-num}", '★' %>
               <% end %>
             </div>
             <%= f.hidden_field  :question_id, value: @questions[count].id %>

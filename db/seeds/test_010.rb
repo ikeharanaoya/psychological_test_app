@@ -9,7 +9,7 @@ Question.create(number: 1,text: '難しい状況で責任を負わされたり�
 Question.create(number: 2,text: '成功するかどうかわからないことをするのは不安だ',division_id: 1,valuation: 2,inversion: 0,problem_id: problem.id)
 Question.create(number: 3,text: '問題がすぐに理解できないと不安になる',division_id: 1,valuation: 2,inversion: 0,problem_id: problem.id)
 Question.create(number: 4,text: '新しい人と知り合うと、その人に拒絶されるのが怖くなる',division_id: 2,valuation: 2,inversion: 0,problem_id: problem.id)
-Question.create(number: 5,text: '見知らぬ人に近づくと、冷たい態度をとられるないか不安になる',division_id: 2,valuation: 2,inversion: 0,problem_id: problem.id)
+Question.create(number: 5,text: '見知らぬ人に近づくと、冷たい態度をとられないか不安になる',division_id: 2,valuation: 2,inversion: 0,problem_id: problem.id)
 Question.create(number: 6,text: '他人から拒絶されることは、私にとって大きな脅威を感じさせる',division_id: 2,valuation: 2,inversion: 0,problem_id: problem.id)
 Question.create(number: 7,text: '物事をコントロールできなくなると怖くなる',division_id: 3,valuation: 2,inversion: 0,problem_id: problem.id)
 Question.create(number: 8,text: '自分が何かに影響を与えることができていないことに気づくと、すぐに心配になる',division_id: 3,valuation: 2,inversion: 0,problem_id: problem.id)
