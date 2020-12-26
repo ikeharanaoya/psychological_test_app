@@ -6,8 +6,10 @@ class UsersController < ApplicationController
     # ユーザーの評価履歴が存在しない場合は、トップ画面に遷移
     redirect_to root_path and return if @scores.blank?
 
-    # 合計値リスト(降順)
-    @sum_list = @scores.order(count: :desc).group(:count).sum(:sum)
+    # 回数の最大値を取得
+    count_max = @scores.maximum(:count)
+    # 合計値リスト(降順)[1回目と最新の5回分を取得]
+    @sum_list = @scores.order(count: :desc).group(:count).having("count = 1 OR count > ?",count_max - 5).sum(:sum)
 
     # レーダーチャート用の情報リスト生成
     @scores_js = []
@@ -22,8 +24,8 @@ class UsersController < ApplicationController
       @radar_chart.push(radar_scores_set(@scores.where(count: sum[0])))
     end
 
-    # 合計値リスト（昇順）
-    @sum_list = @scores.order(:count).group(:count).sum(:sum)
+    # 合計値リスト（昇順）[1回目と最新の5回分を取得]
+    @sum_list = @scores.order(:count).group(:count).having("count = 1 OR count > ?",count_max - 5).sum(:sum)
 
     # 最大値取得
     @max = Division.where(problem_id: params['problem_id']).group(:problem_id).sum(:max)
