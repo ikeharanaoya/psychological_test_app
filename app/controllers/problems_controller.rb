@@ -96,6 +96,9 @@ class ProblemsController < ApplicationController
     if user_signed_in?
       # ログインしている場合、評価&回答を保存
       @scores.save
+    else
+      # ログインしていない場合、評価&回答をセッションに格納
+      session['scores_data'] = @scores
     end
 
     # 合計点数順に降順
