@@ -73,3 +73,18 @@
   min-width: 50px;
   font-weight: bold;
 }
+
+.new-user-btn{
+  width: 100%;
+  display: flex;
+}
+.new-user{
+  width: 100%;
+  height: 28px;
+  background-color: red;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  text-decoration-line: none;
+  border: solid 2px #76D6FF;
+}
