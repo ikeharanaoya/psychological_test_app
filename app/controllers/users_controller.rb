@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     # 回数の最大値を取得
     count_max = @scores.maximum(:count)
     # 合計値リスト(降順)[1回目と最新の5回分を取得]
-    @sum_list = @scores.order(count: :desc).group(:count).having("count = 1 OR count > ?",count_max - 5).sum(:sum)
+    @sum_list = @scores.order(count: :desc).group(:count).having('count = 1 OR count > ?', count_max - 5).sum(:sum)
 
     # レーダーチャート用の情報リスト生成
     @scores_js = []
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
 
     # 合計値リスト（昇順）[1回目と最新の5回分を取得]
-    @sum_list = @scores.order(:count).group(:count).having("count = 1 OR count > ?",count_max - 5).sum(:sum)
+    @sum_list = @scores.order(:count).group(:count).having('count = 1 OR count > ?', count_max - 5).sum(:sum)
 
     # 最大値取得
     @max = Division.where(problem_id: params['problem_id']).group(:problem_id).sum(:max)

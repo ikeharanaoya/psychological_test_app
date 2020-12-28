@@ -15,10 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
 
     # バリデーション確認
-    unless @user.valid?
-      # エラーの場合再表示を行い、処理を終了
-      render :new and return
-    else
+    if @user.valid?
       # ユーザー情報を登録する
       @user.save
 
@@ -36,19 +33,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # 評価コレクションの再設定
         @scores.scores.each do |score|
           # 回数を設定
-          score[:count] = session_scores[num]["count"]
+          score[:count] = session_scores[num]['count']
           # 合計点数
-          score[:sum] = session_scores[num]["sum"]
+          score[:sum] = session_scores[num]['sum']
           # 区分IDを設定
-          score[:division_id] = session_scores[num]["division_id"]
+          score[:division_id] = session_scores[num]['division_id']
           # 問題IDを設定
-          score[:problem_id] = session_scores[num]["problem_id"]
+          score[:problem_id] = session_scores[num]['problem_id']
           # ユーザーID設定
           score[:user_id] = @user.id
           # インクリメント
           num += 1
         end
-        
+
         # 評価のセッション情報を取得
         session_answers = session['answers_data']
         # 回答コレクションの数を質問と同じ数に設定
@@ -61,9 +58,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # 回答コレクションの再設定
         @answers.answers.each do |answer|
           # 回答を設定
-          answer[:answer] = session_answers[num]["answer"]
+          answer[:answer] = session_answers[num]['answer']
           # 質問IDを設定
-          answer[:question_id] = session_answers[num]["question_id"]
+          answer[:question_id] = session_answers[num]['question_id']
 
           # 回答→質問から区分を取得
           division_id = answer.question.division_id
@@ -87,6 +84,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_in(:user, @user)
       # トップページに遷移する
       redirect_to root_path
+    else
+      # エラーの場合再表示を行い、処理を終了
+      render :new and return
     end
   end
 
