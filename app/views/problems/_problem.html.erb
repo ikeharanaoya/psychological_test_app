@@ -6,7 +6,7 @@
     <div class='problem-text'><%= problem.text %></div>
     <div class='problem-btn'>
       <%= link_to '診断', problem_path(problem), class: 'test' %>
-      <% if user_signed_in? && !problem.scores.blank? %>
+      <% if user_signed_in? && !problem.scores.where(count: 1, user: current_user.id).blank? %>
         <%= link_to '履歴' , problem_user_path(problem.id,current_user.id), method: :get ,class: 'log'%>
       <% end %>
     </div>
