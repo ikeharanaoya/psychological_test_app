@@ -10,9 +10,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    # userの情報を設定＆生成
+    @user = User.new(sign_up_params)
+
+    # バリデーション確認
+    unless @user.valid?
+      # エラーの場合再表示を行い、処理を終了
+      render :new and return
+    else
+      # ユーザー情報を登録する
+      @user.save
+      # ログインする
+      sign_in(:user, @user)
+      # トップページに遷移する
+      redirect_to root_path
+    end
+  end
 
   # GET /resource/edit
   # def edit
