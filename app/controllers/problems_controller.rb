@@ -92,7 +92,7 @@ class ProblemsController < ApplicationController
       @scores.save
     else
       # ログインしていない場合、評価&回答をセッションに格納
-      session['scores_data'] = @scores
+      session['scores_data'] = @scores.scores
     end
 
     # 合計点数順に降順
@@ -133,13 +133,17 @@ class ProblemsController < ApplicationController
     # 初期化
     count = 1
 
-    # 回数の最大値取得
-    max = Score.where(problem_id: params[:id]).maximum(:count)
-    unless max.nil?
-      # 空以外は値を追加する
-      count = max + 1
-    end
+    # ログイン確認
+    if user_signed_in?
+      # ログインしている場合に検索する
 
+      # 回数の最大値取得
+      max = Score.where(problem_id: params[:id], user: current_user.id).maximum(:count)
+      unless max.nil?
+        # 空以外は値を追加する
+        count = max + 1
+      end
+    end
     count
   end
 
