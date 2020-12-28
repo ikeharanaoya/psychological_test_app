@@ -26,9 +26,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       unless session['scores_data'].blank?
         # 評価のセッション情報を取得
         session_scores = session['scores_data']
-
         # 評価コレクションの数をセッション情報と同じ数に設定
-        Form::ScoreCollection.set_count(session['scores_data'].length)
+        Form::ScoreCollection.set_count(session_scores.length)
         # 評価コレクションを生成
         @scores = Form::ScoreCollection.new
         # 繰り返しカウント
@@ -50,10 +49,38 @@ class Users::RegistrationsController < Devise::RegistrationsController
           num += 1
         end
         
+        # 評価のセッション情報を取得
+        session_answers = session['answers_data']
+        # 回答コレクションの数を質問と同じ数に設定
+        Form::AnswerCollection.set_count(session_answers.length)
+        # 回答コレクションを生成
+        @answers = Form::AnswerCollection.new
+
+        # 繰り返しカウント
+        num = 0
+        # 回答コレクションの再設定
+        @answers.answers.each do |answer|
+          # 回答を設定
+          answer[:answer] = session_answers[num]["answer"]
+          # 質問IDを設定
+          answer[:question_id] = session_answers[num]["question_id"]
+
+          # 回答→質問から区分を取得
+          division_id = answer.question.division_id
+          # 区分に紐づく評価を取得
+          score = @scores.scores.find { |a| a[:division_id] == division_id }
+          # 評価と回答を紐づける
+          score.answers.build(answer.attributes)
+
+          # インクリメント
+          num += 1
+        end
+
         # 評価&回答を保存
         @scores.save
         # セッションの情報を削除
         session['scores_data'].clear
+        session['answers_data'].clear
       end
 
       # ログインする
