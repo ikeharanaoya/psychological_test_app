@@ -1,14 +1,8 @@
 class ProblemsController < ApplicationController
   # トップ画面
   def index
-    # ログイン確認
-    if user_signed_in?
-      # 問題情報取得(ユーザー情報含む)
-      @problems = Problem.joins("LEFT OUTER JOIN `scores` ON `problems`.`id` = `scores`.`problem_id` AND `scores`.`user_id`= #{current_user.id} AND `scores`.`count`= 1 AND `scores`.`division_id`= 1").includes([questions: :division])
-    else
-      # 問題情報取得
-      @problems = Problem.includes(:scores, [questions: :division])
-    end
+    # 問題情報取得
+    @problems = Problem.includes([questions: :division])
   end
 
   # 心理テスト画面
@@ -96,6 +90,11 @@ class ProblemsController < ApplicationController
     if user_signed_in?
       # ログインしている場合、評価&回答を保存
       @scores.save
+    else
+      # ログインしていない場合、評価をセッションに格納
+      session['scores_data'] = @scores.scores
+      # 回答をセッションに格納
+      session['answers_data'] = @answers.answers
     end
 
     # 合計点数順に降順
@@ -136,13 +135,17 @@ class ProblemsController < ApplicationController
     # 初期化
     count = 1
 
-    # 回数の最大値取得
-    max = Score.where(problem_id: params[:id]).maximum(:count)
-    unless max.nil?
-      # 空以外は値を追加する
-      count = max + 1
-    end
+    # ログイン確認
+    if user_signed_in?
+      # ログインしている場合に検索する
 
+      # 回数の最大値取得
+      max = Score.where(problem_id: params[:id], user: current_user.id).maximum(:count)
+      unless max.nil?
+        # 空以外は値を追加する
+        count = max + 1
+      end
+    end
     count
   end
 

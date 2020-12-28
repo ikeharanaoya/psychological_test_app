@@ -40,4 +40,12 @@
       <%= render 'shared/radar_chart', model: @scores_js %>
     </div>
   </div>
+  <% unless user_signed_in? %>
+    <%# ログインしてないときは以下を表示する %>
+    <br>
+    <span>会員情報を登録すると、今回の診断結果も保存できます！o(*^▽^*)o<span>
+    <div class='new-user-btn'>
+      <%= link_to '新規登録', new_user_registration_path, class: "new-user" %>
+    </div>
+  <% end %>
 </div>
