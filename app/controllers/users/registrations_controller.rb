@@ -38,6 +38,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @scores.scores.each do |score|
           # 回数を設定
           score[:count] = session_scores[num]["count"]
+          # 合計点数
+          score[:sum] = session_scores[num]["sum"]
           # 区分IDを設定
           score[:division_id] = session_scores[num]["division_id"]
           # 問題IDを設定
@@ -47,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           # インクリメント
           num += 1
         end
-
+        
         # 評価&回答を保存
         @scores.save
         # セッションの情報を削除
