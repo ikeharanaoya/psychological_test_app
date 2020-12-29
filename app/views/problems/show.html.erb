@@ -8,10 +8,10 @@
 <div class='problem-show'>
   <%= form_with local: true do |f| %>
     <div class='ruyou-main'>
-      <%= f.submit '賢者' ,class: 'kenja-btn'%>
+      <%= f.submit '賢者' ,class: 'kenja-btn',id: 'kenja-btn' %>
       <% if user_signed_in? && !@problem.scores.where(count: 1, user: current_user.id).blank? %>
-        <%= f.submit '最新' ,class: 'new-btn'%>
-        <%= f.submit '自己ベスト' ,class: 'up-btn'%>
+        <%= f.submit '最新' ,class: 'new-btn',id: 'new-btn' %>
+        <%= f.submit '自己ベスト' ,class: 'best-btn',id: 'best-btn' %>
       <% end %>
     </div>
   <% end %>

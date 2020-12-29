@@ -18,7 +18,7 @@
   align-items: center;
   margin: 0px 0px 5px;
 }
-.kenja-btn,.new-btn,.up-btn{
+.kenja-btn,.new-btn,.best-btn{
   width: 100%;
   border-radius: 4px;
   font-weight: bold;
@@ -31,7 +31,7 @@
   background-color: yellow;
   color: black;
 }
-.up-btn{
+.best-btn{
   background-color: red;
   color: black;
 }
