@@ -5,12 +5,35 @@
   position: relative;
   background-color: #76D6FF;
   height: 50px;
-  margin: 10px 5vw;
+  margin: 10px 5vw 5px;
   border-radius: 4px;
 }
 .problem-header-title{
   color: white;
   font-size: 24px;
+}
+.ruyou-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 5vw 5px;
+}
+.kenja-btn,.new-btn,.up-btn{
+  width: 100%;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.kenja-btn{
+  background-color: rgb(5, 5, 148);
+  color: white;
+}
+.new-btn{
+  background-color: yellow;
+  color: black;
+}
+.up-btn{
+  background-color: red;
+  color: black;
 }
 .problem-show{
   padding: 0 5vw;

@@ -4,6 +4,13 @@
         <%= @problem.title %>
       </div>
     </div>
+    <%= form_with local: true do |f| %>
+      <div class='ruyou-main'>
+        <%= f.submit '賢者' ,class: 'kenja-btn'%>
+        <%= f.submit '最新' ,class: 'new-btn'%>
+        <%= f.submit '自己ベスト' ,class: 'up-btn'%>
+      </div>
+    <% end %>
 </header>
 <div class='problem-show'>
   <div class='problem-show-info'>
