@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   resources :problems, only: [:show,:create] do
     # usersのパス
     resources :users, only: :show
+    # 賢者情報取得のパス
+    get 'kenja_search'
   end
 end

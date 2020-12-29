@@ -16,6 +16,22 @@ window.addEventListener("DOMContentLoaded", ()=>{
     kenjaBtn.addEventListener("click", (e) => { 
       // フォーム送信処理をキャンセル
       e.preventDefault();
+      // XMLHttpRequestを生成
+      const XHR = new XMLHttpRequest();
+      // XMLHttpRequestを初期化
+      XHR.open("GET", `${location.pathname}/kenja_search`, true);
+      // レスポンスの形式を定義
+      XHR.responseType = "json";
+      // 送信
+      XHR.send();
+      // 受信後の処理
+      XHR.onload = () => {
+        // エラー確認
+        if (XHR.status != 200) {
+          alert(`Error ${XHR.status}: ${XHR.statusText}`);
+          return null
+        }
+      };
     });
 
     // 最新ボタン

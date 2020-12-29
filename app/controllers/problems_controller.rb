@@ -122,6 +122,11 @@ class ProblemsController < ApplicationController
     # binding.pry
   end
 
+  # 賢者ボタンのデータ取得処理
+  def kenja_search
+    binding.pry
+  end
+
   private
 
   # 回答結果を取得
