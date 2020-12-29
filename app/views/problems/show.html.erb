@@ -39,7 +39,7 @@
               <% @questions[count].valuation.times do |num| %>
                 <%# ラジオボタン %>
                 <%= f.radio_button :answer, @questions[count].valuation-num %>
-                <%= f.label "answer_#{@questions[count].valuation-num}", '★' %>
+                <%= f.label "answer_#{@questions[count].valuation-num}", '★',id: "#{count+1}_#{@questions[count].valuation-num}" %>
               <% end %>
             </div>
             <%= f.hidden_field  :question_id, value: @questions[count].id %>
@@ -47,7 +47,7 @@
           <% count += 1 %>
         <% end %>
       </ul>
-      <input name="id" type="hidden" value=<%= @problem.id %>>
+      <input name="id" type="hidden" value=<%= @problem.id %> id="problem_id">
       <%= answers.submit '診断スタート' ,class: 'question-submit'%>
     <% end %>
   </div>
