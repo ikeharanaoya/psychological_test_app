@@ -4,15 +4,17 @@
         <%= @problem.title %>
       </div>
     </div>
-    <%= form_with local: true do |f| %>
-      <div class='ruyou-main'>
-        <%= f.submit '賢者' ,class: 'kenja-btn'%>
-        <%= f.submit '最新' ,class: 'new-btn'%>
-        <%= f.submit '自己ベスト' ,class: 'up-btn'%>
-      </div>
-    <% end %>
 </header>
 <div class='problem-show'>
+  <%= form_with local: true do |f| %>
+    <div class='ruyou-main'>
+      <%= f.submit '賢者' ,class: 'kenja-btn'%>
+      <% if user_signed_in? && !@problem.scores.where(count: 1, user: current_user.id).blank? %>
+        <%= f.submit '最新' ,class: 'new-btn'%>
+        <%= f.submit '自己ベスト' ,class: 'up-btn'%>
+      <% end %>
+    </div>
+  <% end %>
   <div class='problem-show-info'>
     <div class='problem-show-text'><%= @problem.text %></div>
   </div>
