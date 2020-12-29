@@ -124,7 +124,17 @@ class ProblemsController < ApplicationController
 
   # 賢者ボタンのデータ取得処理
   def kenja_search
-    binding.pry
+    # 問題情報取得、紐づく質問も取得
+    problem = Problem.includes(questions: :division).find(params[:problem_id])
+    # 質問項目を取得する
+    questions = problem.questions
+    # 回答コレクションの数を質問と同じ数に設定
+    Form::AnswerCollection.set_count(questions.length)
+    # 回答情報を生成
+    answers = Form::AnswerCollection.new
+
+    # 回答結果を返す
+    render json: { post: set_answers(answers,questions) }
   end
 
   private
@@ -165,5 +175,25 @@ class ProblemsController < ApplicationController
     end
 
     user_id
+  end
+
+  # 質問情報から、回答結果を設定
+  def set_answers(answers,questions)
+    # 繰り返しカウント
+    num = 0
+    # 回答結果に質問情報を設定する
+    answers.answers.each do |answer|
+      # 点数反転確認
+      if questions[num].inversion
+        # 反転する場合、１を設定
+        answer.answer = 1
+      else
+        # 正常の場合、最大値を設定
+        answer.answer = questions[num].valuation
+      end
+      # インクリメント
+      num += 1
+    end
+    answers
   end
 end
