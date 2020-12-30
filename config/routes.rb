@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     resources :users, only: :show
     # 賢者情報取得のパス
     get 'kenja_search'
+    # 最新情報取得のパス
+    get 'new_search'
   end
 end

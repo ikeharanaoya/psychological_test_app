@@ -60,6 +60,24 @@ window.addEventListener("DOMContentLoaded", ()=>{
       newBtn.addEventListener("click", (e) => { 
         // フォーム送信処理をキャンセル
         e.preventDefault();
+        // 問題のID取得
+        const problem_id = document.getElementById("problem_id");
+        // XMLHttpRequestを生成
+        const XHR = new XMLHttpRequest();
+        // XMLHttpRequestを初期化
+        XHR.open("GET", `/problems/${problem_id.value}/new_search`, true);
+        // レスポンスの形式を定義
+        XHR.responseType = "json";
+        // 送信
+        XHR.send();
+        // 受信後の処理
+        XHR.onload = () => {
+          // エラー確認
+          if (XHR.status != 200) {
+            alert(`Error ${XHR.status}: ${XHR.statusText}`);
+            return null
+          }
+        }
       });
     }
 

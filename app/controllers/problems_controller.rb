@@ -137,6 +137,11 @@ class ProblemsController < ApplicationController
     render json: { post: set_answers(answers,questions) }
   end
 
+  # 最新ボタンのデータ取得処理
+  def new_search
+    # binding.pry
+  end
+
   private
 
   # 回答結果を取得
