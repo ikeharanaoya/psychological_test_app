@@ -267,7 +267,13 @@ class ProblemsController < ApplicationController
         # 質問IDを設定
         answers.answers[num][:question_id] = answer[:question_id]
         # 答えを設定
-        answers.answers[num][:answer] = answer[:answer]
+        if (answer.question.inversion)
+          # 反転する場合は、全体値から答えを引いた値を設定
+          answers.answers[num][:answer] = answer.question.valuation - answer.answer + 1
+        else
+          # 正常の場合は、答えの値を設定
+          answers.answers[num][:answer] = answer[:answer]
+        end
         # インクリメント
         num += 1
       end
