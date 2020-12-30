@@ -134,12 +134,27 @@ class ProblemsController < ApplicationController
     answers = Form::AnswerCollection.new
 
     # 回答結果を返す
-    render json: { post: set_answers(answers,questions) }
+    render json: { post: set_answers_question(answers,questions) }
   end
 
   # 最新ボタンのデータ取得処理
   def new_search
-    # binding.pry
+    # 回数の最大値取得
+    max = Score.where(problem_id: params[:problem_id], user: current_user.id).maximum(:count)
+    # 最新の評価情報を取得
+    scores = Score.includes(:answers).where(problem_id: params[:problem_id],user_id: current_user.id,count: max)
+
+    # 問題情報取得、紐づく質問も取得
+    problem = Problem.includes(questions: :division).find(params[:problem_id])
+    # 質問項目を取得する
+    questions = problem.questions
+    # 回答コレクションの数を質問と同じ数に設定
+    Form::AnswerCollection.set_count(questions.length)
+    # 回答情報を生成
+    answers = Form::AnswerCollection.new
+
+    # 回答結果を返す
+    render json: { post: set_answers_score(answers,scores) }
   end
 
   private
@@ -183,7 +198,7 @@ class ProblemsController < ApplicationController
   end
 
   # 質問情報から、回答結果を設定
-  def set_answers(answers,questions)
+  def set_answers_question(answers,questions)
     # 繰り返しカウント
     num = 0
     # 回答結果に質問情報を設定する
@@ -199,6 +214,26 @@ class ProblemsController < ApplicationController
       # インクリメント
       num += 1
     end
+    # 回答結果を返す
     answers
+  end
+
+  # 評価情報から、回答結果を設定
+  def set_answers_score(answers,scores)
+    # 繰り返しカウント
+    num = 0
+    # 回答結果に質問情報を設定する
+    scores.each do |score|
+      score.answers.each do |answer|
+        # 質問IDを設定
+        answers.answers[num][:question_id] = answer[:question_id]
+        # 答えを設定
+        answers.answers[num][:answer] = answer[:answer]
+        # インクリメント
+        num += 1
+      end
+    end
+    # 質問IDの昇順で回答結果を返す
+    answers.answers.sort do |a,b| a[:question_id] <=> b[:question_id] end
   end
 end
