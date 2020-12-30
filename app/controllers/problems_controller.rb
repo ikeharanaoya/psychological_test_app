@@ -91,10 +91,49 @@ class ProblemsController < ApplicationController
       # ログインしている場合、評価&回答を保存
       @scores.save
     else
-      # ログインしていない場合、評価をセッションに格納
-      session['scores_data'] = @scores.scores
+      # ログインしていない場合
+
+      # 格納用に変数を初期化
+      session['scores_data'] = []
+      # 繰り返しカウント
+      num = 0
+      # 評価をセッションに格納
+      @scores.scores.each do |score|
+        # 変数の初期化
+        add_score = {}
+        # 回数を設定
+        add_score[:count] = score[:count]
+        # 合計点数
+        add_score[:sum] = score[:sum]
+        # 区分IDを設定
+        add_score[:division_id] = score[:division_id]
+        # 問題IDを設定
+        add_score[:problem_id] = score[:problem_id]
+
+        # セッションに情報を追加
+        session['scores_data'] << add_score
+        # インクリメント
+        num += 1
+      end
+
+      # 格納用に変数を初期化
+      session['answers_data'] = []
+      # 繰り返しカウント
+      num = 0
       # 回答をセッションに格納
-      session['answers_data'] = @answers.answers
+      @answers.answers.each do |answer|
+        # 変数の初期化
+        add_answer = {}
+        # 回答を設定
+        add_answer[:answer] = answer[:answer]
+        # 質問IDを設定
+        add_answer[:question_id] = answer[:question_id]
+
+        # セッションに情報を追加
+        session['answers_data'] << add_answer
+        # インクリメント
+        num += 1
+      end
     end
 
     # 合計点数順に降順
