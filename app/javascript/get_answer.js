@@ -120,6 +120,19 @@ window.addEventListener("DOMContentLoaded", ()=>{
             return null
           }
 
+          // 自己ベストの回答情報を取得
+          const answers = XHR.response.post;
+
+          // ラベル情報用の変数
+          let radioLabel
+          for (let i = 0; i < answers.length; i++) {
+            for (let j = 1; j <= answers[i]["answer"]; j++) {
+              // ラベル情報を取得
+              radioLabel = document.getElementById(`${i+1}_${j}`);
+              // 印をつける
+              radioLabel.style.background = "radial-gradient(ellipse closest-side at 50% 83%,rgb(255 2 2), rgb(220, 242, 253) 90%)"
+            }
+          }
         }
       });
     }
