@@ -198,7 +198,25 @@ class ProblemsController < ApplicationController
 
   # 自己ベストボタンのデータ取得処理
   def best_search
-    # binding.pry
+    # 自己ベストの回数の値取得
+    best = Score.where(problem_id: params[:problem_id], user: current_user.id).
+                      group(:count).sum(:sum).
+                      max{ |(_key0,value0),(_key1,value1)| value0<=>value1 }[0]
+
+    # 自己ベストの評価情報を取得
+    scores = Score.includes(:answers).where(problem_id: params[:problem_id],user_id: current_user.id,count: best)
+
+    # 問題情報取得、紐づく質問も取得
+    problem = Problem.includes(questions: :division).find(params[:problem_id])
+    # 質問項目を取得する
+    questions = problem.questions
+    # 回答コレクションの数を質問と同じ数に設定
+    Form::AnswerCollection.set_count(questions.length)
+    # 回答情報を生成
+    answers = Form::AnswerCollection.new
+
+    # 回答結果を返す
+    render json: { post: set_answers_score(answers,scores) }
   end
 
   private
