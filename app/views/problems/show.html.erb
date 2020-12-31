@@ -1,11 +1,20 @@
 <header>
     <div class='problem-header'>
       <div class='problem-header-title'>
-        <%= @problem.title %>
+        <span id='title' ><%= @problem.title %></span>
       </div>
     </div>
 </header>
 <div class='problem-show'>
+  <%= form_with local: true do |f| %>
+    <div class='ruyou-main'>
+      <%= f.submit '賢者' ,class: 'kenja-btn',id: 'kenja-btn' %>
+      <% if user_signed_in? && !@problem.scores.where(count: 1, user: current_user.id).blank? %>
+        <%= f.submit '最新' ,class: 'new-btn',id: 'new-btn' %>
+        <%= f.submit '自己ベスト' ,class: 'best-btn',id: 'best-btn' %>
+      <% end %>
+    </div>
+  <% end %>
   <div class='problem-show-info'>
     <div class='problem-show-text'><%= @problem.text %></div>
   </div>
@@ -30,7 +39,7 @@
               <% @questions[count].valuation.times do |num| %>
                 <%# ラジオボタン %>
                 <%= f.radio_button :answer, @questions[count].valuation-num %>
-                <%= f.label "answer_#{@questions[count].valuation-num}", '★' %>
+                <%= f.label "answer_#{@questions[count].valuation-num}", '★',id: "#{count+1}_#{@questions[count].valuation-num}" %>
               <% end %>
             </div>
             <%= f.hidden_field  :question_id, value: @questions[count].id %>
@@ -38,7 +47,7 @@
           <% count += 1 %>
         <% end %>
       </ul>
-      <input name="id" type="hidden" value=<%= @problem.id %>>
+      <input name="id" type="hidden" value=<%= @problem.id %> id="problem_id">
       <%= answers.submit '診断スタート' ,class: 'question-submit'%>
     <% end %>
   </div>
