@@ -173,7 +173,7 @@ class ProblemsController < ApplicationController
     answers = Form::AnswerCollection.new
 
     # 回答結果を返す
-    render json: { post: set_answers_question(answers,questions) }
+    render json: { post: set_answers_question(answers, questions) }
   end
 
   # 最新ボタンのデータ取得処理
@@ -181,7 +181,7 @@ class ProblemsController < ApplicationController
     # 回数の最大値取得
     max = Score.where(problem_id: params[:problem_id], user: current_user.id).maximum(:count)
     # 最新の評価情報を取得
-    scores = Score.includes(:answers).where(problem_id: params[:problem_id],user_id: current_user.id,count: max)
+    scores = Score.includes(:answers).where(problem_id: params[:problem_id], user_id: current_user.id, count: max)
 
     # 問題情報取得、紐づく質問も取得
     problem = Problem.includes(questions: :division).find(params[:problem_id])
@@ -193,18 +193,18 @@ class ProblemsController < ApplicationController
     answers = Form::AnswerCollection.new
 
     # 回答結果を返す
-    render json: { post: set_answers_score(answers,scores) }
+    render json: { post: set_answers_score(answers, scores) }
   end
 
   # 自己ベストボタンのデータ取得処理
   def best_search
     # 自己ベストの回数の値取得
-    best = Score.where(problem_id: params[:problem_id], user: current_user.id).
-                      group(:count).sum(:sum).
-                      max{ |(_key0,value0),(_key1,value1)| value0<=>value1 }[0]
+    best = Score.where(problem_id: params[:problem_id], user: current_user.id)
+                .group(:count).sum(:sum)
+                .max { |(_key0, value0), (_key1, value1)| value0 <=> value1 }[0]
 
     # 自己ベストの評価情報を取得
-    scores = Score.includes(:answers).where(problem_id: params[:problem_id],user_id: current_user.id,count: best)
+    scores = Score.includes(:answers).where(problem_id: params[:problem_id], user_id: current_user.id, count: best)
 
     # 問題情報取得、紐づく質問も取得
     problem = Problem.includes(questions: :division).find(params[:problem_id])
@@ -216,7 +216,7 @@ class ProblemsController < ApplicationController
     answers = Form::AnswerCollection.new
 
     # 回答結果を返す
-    render json: { post: set_answers_score(answers,scores) }
+    render json: { post: set_answers_score(answers, scores) }
   end
 
   private
@@ -260,19 +260,19 @@ class ProblemsController < ApplicationController
   end
 
   # 質問情報から、回答結果を設定
-  def set_answers_question(answers,questions)
+  def set_answers_question(answers, questions)
     # 繰り返しカウント
     num = 0
     # 回答結果に質問情報を設定する
     answers.answers.each do |answer|
       # 点数反転確認
-      if questions[num].inversion
-        # 反転する場合、１を設定
-        answer.answer = 1
-      else
-        # 正常の場合、最大値を設定
-        answer.answer = questions[num].valuation
-      end
+      answer.answer = if questions[num].inversion
+                        # 反転する場合、１を設定
+                        1
+                      else
+                        # 正常の場合、最大値を設定
+                        questions[num].valuation
+                      end
       # インクリメント
       num += 1
     end
@@ -281,7 +281,7 @@ class ProblemsController < ApplicationController
   end
 
   # 評価情報から、回答結果を設定
-  def set_answers_score(answers,scores)
+  def set_answers_score(answers, scores)
     # 繰り返しカウント
     num = 0
     # 回答結果に質問情報を設定する
@@ -290,18 +290,18 @@ class ProblemsController < ApplicationController
         # 質問IDを設定
         answers.answers[num][:question_id] = answer[:question_id]
         # 答えを設定
-        if (answer.question.inversion)
-          # 反転する場合は、全体値から答えを引いた値を設定
-          answers.answers[num][:answer] = answer.question.valuation - answer.answer + 1
-        else
-          # 正常の場合は、答えの値を設定
-          answers.answers[num][:answer] = answer[:answer]
-        end
+        answers.answers[num][:answer] = if answer.question.inversion
+                                          # 反転する場合は、全体値から答えを引いた値を設定
+                                          answer.question.valuation - answer.answer + 1
+                                        else
+                                          # 正常の場合は、答えの値を設定
+                                          answer[:answer]
+                                        end
         # インクリメント
         num += 1
       end
     end
     # 質問IDの昇順で回答結果を返す
-    answers.answers.sort do |a,b| a[:question_id] <=> b[:question_id] end
+    answers.answers.sort { |a, b| a[:question_id] <=> b[:question_id] }
   end
 end
