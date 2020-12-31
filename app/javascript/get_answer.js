@@ -51,6 +51,22 @@ window.addEventListener("DOMContentLoaded", ()=>{
           }
         };
       });
+
+      // タイトル
+      const title = document.getElementById("title");
+      if(title) {
+        // タイトルクリック時のアクション
+        title.addEventListener('click', function() {
+          // 賢者ボタンの表示と非表示の設定
+          if (kenjaBtn.getAttribute("style") == "display:block;") {
+            // 項目を表示する
+            kenjaBtn.removeAttribute("style", "display:block;")
+          } else {
+            // 項目を非表示にする
+            kenjaBtn.setAttribute("style", "display:block;")
+          }
+        });
+      }
     }
 
     // 最新ボタン

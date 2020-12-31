@@ -26,6 +26,7 @@
 .kenja-btn{
   background-color: rgb(5, 5, 148);
   color: white;
+  display: none;
 }
 .new-btn{
   background-color: rgb(255, 190, 0);
