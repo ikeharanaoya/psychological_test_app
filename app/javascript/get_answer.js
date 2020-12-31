@@ -77,7 +77,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
             return null
           }
 
-          // 賢者の回答情報を取得
+          // 最新の回答情報を取得
           const answers = XHR.response.post;
 
           // ラベル情報用の変数
@@ -100,6 +100,27 @@ window.addEventListener("DOMContentLoaded", ()=>{
       bestBtn.addEventListener("click", (e) => { 
         // フォーム送信処理をキャンセル
         e.preventDefault();
+        // フォーム送信処理をキャンセル
+        e.preventDefault();
+        // 問題のID取得
+        const problem_id = document.getElementById("problem_id");
+        // XMLHttpRequestを生成
+        const XHR = new XMLHttpRequest();
+        // XMLHttpRequestを初期化
+        XHR.open("GET", `/problems/${problem_id.value}/best_search`, true);
+        // レスポンスの形式を定義
+        XHR.responseType = "json";
+        // 送信
+        XHR.send();
+        // 受信後の処理
+        XHR.onload = () => {
+          // エラー確認
+          if (XHR.status != 200) {
+            alert(`Error ${XHR.status}: ${XHR.statusText}`);
+            return null
+          }
+
+        }
       });
     }
   }

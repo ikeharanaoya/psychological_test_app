@@ -196,6 +196,11 @@ class ProblemsController < ApplicationController
     render json: { post: set_answers_score(answers,scores) }
   end
 
+  # 自己ベストボタンのデータ取得処理
+  def best_search
+    # binding.pry
+  end
+
   private
 
   # 回答結果を取得

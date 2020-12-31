@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     get 'kenja_search'
     # 最新情報取得のパス
     get 'new_search'
+    # 自己ベスト情報取得のパス
+    get 'best_search'
   end
 end
