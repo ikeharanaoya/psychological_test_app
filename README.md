@@ -44,6 +44,8 @@ https://psychological-test-app.herokuapp.com
 - ★（星）入力
 - レーダーチャート表示
 - 強みの判定
+- 過去のデータを引き継いた情報を表示する（最新、自己ベスト）
+- フルスコアの情報を表示する（賢者ボタン）
 - ログイン時のデータ登録
 - 診断後にログアウトの場合の、新規ユーザー登録機能
 ## 【履歴確認】
@@ -55,7 +57,6 @@ https://psychological-test-app.herokuapp.com
 # 実装予定の機能
 ## 【心理テスト】
 - テスト結果の棒グラフ表示
-- 過去のデータを引き継いで、再診断する機能
 
 # ローカルでの動作方法
 $ git clone https://github.com/ikeharanaoya/psychological_test_app.git  
