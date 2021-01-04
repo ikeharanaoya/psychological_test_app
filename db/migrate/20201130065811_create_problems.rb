@@ -6,7 +6,9 @@ class CreateProblems < ActiveRecord::Migration[6.0]
       t.string :title, null: false
       # 本文
       t.text :text, null: false
-      
+      # パターン
+      t.integer :pattern,   null: false
+
       t.timestamps
     end
   end
