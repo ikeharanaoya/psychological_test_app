@@ -76,10 +76,11 @@ $ rails s
 
 # テーブル設計
 ## problems テーブル
-| Column | Type   | Options     |
-|--------|--------|-------------|
-| title  | string | null: false |
-| text   | text   | null: false |
+| Column  | Type    | Options     |
+|---------|---------|-------------|
+| title   | string  | null: false |
+| text    | text    | null: false |
+| pattern | integer | null: false |
 
 ### Association
 - has_many :questions
