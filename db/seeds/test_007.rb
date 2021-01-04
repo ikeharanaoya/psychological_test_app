@@ -1,5 +1,5 @@
 # 内向タイプ診断テスト
-problem = Problem.create(title: '内向タイプ診断テスト', text: '自分はどんなタイプの「内向人間」なのか？を判断する40問')
+problem = Problem.create(title: '内向タイプ診断テスト', text: '自分はどんなタイプの「内向人間」なのか？を判断する40問', pattern: 1)
 Division.create(division_id: 1,text: '社会的な内向',standard: 30,max: 50,problem_id: problem.id)
 Division.create(division_id: 2,text: '思考的な内向',standard: 34,max: 50,problem_id: problem.id)
 Division.create(division_id: 3,text: '不安的な内向',standard: 30,max: 50,problem_id: problem.id)

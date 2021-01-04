@@ -1,5 +1,5 @@
 # ワーク・エンゲージメント尺度
-problem = Problem.create(title: 'ワーク・エンゲージメント尺度', text: '「自分は仕事にやりがいを感じているか？」を判断できるテスト')
+problem = Problem.create(title: 'ワーク・エンゲージメント尺度', text: '「自分は仕事にやりがいを感じているか？」を判断できるテスト', pattern: 1)
 Division.create(division_id: 1,text: '活力',standard: 21,max: 42,problem_id: problem.id)
 Division.create(division_id: 2,text: '熱意',standard: 17,max: 35,problem_id: problem.id)
 Division.create(division_id: 3,text: '没頭',standard: 21,max: 42,problem_id: problem.id)

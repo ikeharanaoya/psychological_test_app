@@ -1,5 +1,5 @@
 # FFMQ
-problem = Problem.create(title: 'FFMQ', text: '「いま自分はどれぐらいマインドフルネスができてるのか？」を判断できるテスト')
+problem = Problem.create(title: 'FFMQ', text: '「いま自分はどれぐらいマインドフルネスができてるのか？」を判断できるテスト', pattern: 1)
 Division.create(division_id: 1,text: '観察',standard: 24,max: 40,problem_id: problem.id)
 Division.create(division_id: 2,text: '説明',standard: 24,max: 40,problem_id: problem.id)
 Division.create(division_id: 3,text: '意識した行動',standard: 24,max: 40,problem_id: problem.id)

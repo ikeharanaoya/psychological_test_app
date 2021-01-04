@@ -1,5 +1,5 @@
 # プランフルネス・スケール
-problem = Problem.create(title: 'プランフルネス・スケール', text: '自分がゴールを達成できないのはなぜか？がよくわかる30問')
+problem = Problem.create(title: 'プランフルネス・スケール', text: '自分がゴールを達成できないのはなぜか？がよくわかる30問', pattern: 1)
 Division.create(division_id: 1,text: '精神の柔軟性(感情コントロール)',standard: 35,max: 50,problem_id: problem.id)
 Division.create(division_id: 2,text: '認知戦略(プランニング)',standard: 35,max: 50,problem_id: problem.id)
 Division.create(division_id: 3,text: '時間感覚(長期的な視野)',standard: 35,max: 50,problem_id: problem.id)

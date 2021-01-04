@@ -1,5 +1,5 @@
 # MTQ-10
-problem = Problem.create(title: 'MTQ-10', text: '自分のタフさを測る10の質問')
+problem = Problem.create(title: 'MTQ-10', text: '自分のタフさを測る10の質問', pattern: 1)
 Division.create(division_id: 1,text: 'コントロール',standard: 9,max: 15,problem_id: problem.id)
 Division.create(division_id: 2,text: 'コミットメント',standard: 6,max: 10,problem_id: problem.id)
 Division.create(division_id: 3,text: 'チャレンジ',standard: 7,max: 10,problem_id: problem.id)

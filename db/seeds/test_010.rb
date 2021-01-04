@@ -1,5 +1,5 @@
 # 心理恐怖尺度
-problem = Problem.create(title: '心理恐怖尺度', text: '「自分はどんなことについて恐怖を感じやすいのか？」を判断できるテスト')
+problem = Problem.create(title: '心理恐怖尺度', text: '「自分はどんなことについて恐怖を感じやすいのか？」を判断できるテスト', pattern: 1)
 Division.create(division_id: 1,text: '失敗への恐怖',standard: 3,max: 6,problem_id: problem.id)
 Division.create(division_id: 2,text: '拒絶への恐怖',standard: 3,max: 6,problem_id: problem.id)
 Division.create(division_id: 3,text: 'コントロールを失うことへの恐怖',standard: 3,max: 6,problem_id: problem.id)

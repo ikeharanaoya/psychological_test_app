@@ -1,5 +1,5 @@
 # 賢者スケール
-problem = Problem.create(title:'賢者スケール', text:'自分の「賢者レベル」を判断できるテスト')
+problem = Problem.create(title: '賢者スケール', text: '自分の「賢者レベル」を判断できるテスト', pattern: 1)
 Division.create(division_id: 1,text: '多様な視点への寛容さ',standard: 15,max: 20,problem_id: problem.id)
 Division.create(division_id: 2,text: 'あいまいで複雑な問題への決断力',standard: 15,max: 20,problem_id: problem.id)
 Division.create(division_id: 3,text: '感情コントロール',standard: 15,max: 20,problem_id: problem.id)

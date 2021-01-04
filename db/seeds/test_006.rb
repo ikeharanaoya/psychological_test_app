@@ -1,5 +1,5 @@
 # リスニングスキル診断
-problem = Problem.create(title: 'リスニングスキル診断', text: '人間関係の改善に欠かせない「自分の傾聴スキル」をチェックするための14問')
+problem = Problem.create(title: 'リスニングスキル診断', text: '人間関係の改善に欠かせない「自分の傾聴スキル」をチェックするための14問', pattern: 1)
 Division.create(division_id: 1,text: '予備リスニング',standard: 9,max: 15,problem_id: problem.id)
 Division.create(division_id: 2,text: 'アクティブリスニング',standard: 20,max: 35,problem_id: problem.id)
 Division.create(division_id: 3,text: '共感リスニング',standard: 12,max: 20,problem_id: problem.id)

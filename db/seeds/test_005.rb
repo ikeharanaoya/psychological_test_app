@@ -1,5 +1,5 @@
 # セルフコンパッションスケール
-problem = Problem.create(title: 'セルフコンパッションスケール', text: 'メンタルヘルスの維持に欠かせない「セルフコンパッション」のレベルが自分はどれだけ高いのか？を判断する26問')
+problem = Problem.create(title: 'セルフコンパッションスケール', text: 'メンタルヘルスの維持に欠かせない「セルフコンパッション」のレベルが自分はどれだけ高いのか？を判断する26問', pattern: 2)
 Division.create(division_id: 1,text: '自己への優しさ',standard: 14,max: 25,problem_id: problem.id)
 Division.create(division_id: 2,text: '自己批判レベル',standard: 16,max: 25,problem_id: problem.id)
 Division.create(division_id: 3,text: '共通の人間性',standard: 11,max: 20,problem_id: problem.id)

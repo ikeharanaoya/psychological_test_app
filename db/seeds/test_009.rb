@@ -1,5 +1,5 @@
 # 自己実現レベルテスト
-problem = Problem.create(title: '自己実現レベルテスト', text: '「自分の自己実現レベルはどれぐらいなの？」を判断できるテスト')
+problem = Problem.create(title: '自己実現レベルテスト', text: '「自分の自己実現レベルはどれぐらいなの？」を判断できるテスト', pattern: 1)
 Division.create(division_id: 1,text: '新鮮な評価の継続',standard: 6,max: 15,problem_id: problem.id)
 Division.create(division_id: 2,text: 'アクセプタンス',standard: 6,max: 15,problem_id: problem.id)
 Division.create(division_id: 3,text: '真正性',standard: 6,max: 15,problem_id: problem.id)
