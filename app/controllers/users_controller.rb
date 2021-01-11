@@ -6,6 +6,9 @@ class UsersController < ApplicationController
     # ユーザーの評価履歴が存在しない場合は、トップ画面に遷移
     redirect_to root_path and return if @scores.blank?
 
+    # 問題情報を取得
+    @problem = @scores[0].problem
+
     # 回数の最大値を取得
     count_max = @scores.maximum(:count)
     # 合計値リスト(降順)[1回目と最新の5回分を取得]
